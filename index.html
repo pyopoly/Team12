@@ -28,6 +28,39 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="scripts/firebase_config_carly.js"></script>
 
 
+        <style>
+            .container {
+                margin-top: 10%;
+                text-align: center;
+            }
+        
+            .row {
+                text-align: center;
+            }
+            
+            img {
+                width:50px;
+                height:auto;
+            }
+            
+            .innerBox {
+                width: 50%;
+                height: 130px;
+               padding: 10px;
+                
+            }
+            
+            .imgBox {
+                height: 50%;
+                padding: 5%;
+            }
+            
+            .titleBox {
+                
+                
+            }
+            
+        </style>
 
 
     </head>
@@ -62,15 +95,15 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
         <!-- A fluid container that uses the full witdh -->
         <div class="container">
             <div class="row">
-                <div class="add" pattern="float:left">
+                <div class="innerBox" >
 
-                    <div class="img">
+                    <div class="imgBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';">
-                            <img id="add" src="images/add.png" class="img-circle" width=40% height=auto>
+                            <img id="add" src="images/add.png" class="img-circle">
                         </a>
                     </div>
 
-                    <div class="title">
+                    <div class="titleBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';">
                             <h3 id="track" align="center" style="text-decoration: none;color:lightslategray;">Create Now</h3>
                         </a>
@@ -78,17 +111,17 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
                 </div>
 
 
-                <div class="map" pattern="float:right">
+                <div class="innerBox" >
 
-                    <div class="img">
+                    <div class="imgBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';" >
-                            <img id="map" src="images/map.png" class="img-circle" width=40% height=auto>
+                            <img id="map" src="images/map.png" class="img-circle">
                         </a>
                     </div>
                     
-                    <div class="title">
+                    <div class="titleBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';">
-                            <h3 id="track" align="center" style="text-decoration: none;color:lightslategray;">See The Map</h3>
+                            <h3 id="track" align="center" style="text-decoration: none;color:lightslategray;">Explore Map</h3>
                         </a>
                     </div>
                 </div>
@@ -96,14 +129,14 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
             </div>
             <div class="row">
                 
-                <div class="social" pattern="float:left">
-                    <div class="img">
+                <div class="innerBox" pattern="float:left">
+                    <div class="imgBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';" pattern="float:left">
-                            <img id="social" src="images/people.png" class="img-circle" width=40% height=auto>
+                            <img id="social" src="images/people.png" class="img-circle">
                         </a>
                     </div>
                     
-                    <div class="title">
+                    <div class="titleBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';">
                             <h3 id="track" align="center" style="text-decoration: none;color:lightslategray;">Get Social</h3>
                         </a>
@@ -111,13 +144,13 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
                 </div>
 
 
-                <div class="QnA" pattern="float:right">
-                    <div class="img">
+                <div class="innerBox" pattern="float:right">
+                    <div class="imgBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';" pattern="float:right">
-                            <img id="QnA" src="images/qna.png" class="img-circle" width=40% height=auto>
+                            <img id="QnA" src="images/qna.png" class="img-circle">
                         </a>
                     </div>
-                    <div class="title">
+                    <div class="titleBox">
                         <a href="login.html" onmouseover="this.style.cursor='pointer';">
                             <h3 id="track" align="center" style="text-decoration: none;color:lightslategray;">Ask Away</h3>
                         </a>
