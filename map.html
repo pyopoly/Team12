@@ -14,73 +14,129 @@
                 crossorigin=""></script>
 
         <style>
-
-
-
-
-            html, body {
+            html, body{
                 width: 100%;
                 height: 100%;
+                text-align: center;
             }
 
             #content {
                 width: 100%;
                 height:100%;
-                z-index: -2;
             }
 
+            /*---------map scc-------*/
             #mapid {
-
-                width: 80%;
-                height: 80%; }
-
-            
-
-            
-            #toggle {
-                
+                float: left;
                 width: 100%;
                 height: 100%;
-               
-                z-index: 2;
-                font-size: 12pt;
-                text-align: left;
-                position: relative;
-                
             }
-            
-            div.nav {
+
+            .leaflet-popup-content-wrapper {
+                width:103%;
+            }
+
+            div.leaflet-control-attribution.leaflet-control {
+                display:none;
+            }
+
+
+
+            /*--------the popup when icon is clicked------*/
+
+            /*the rows in the icon popup*/
+            div[id^='group'] {
+                font-size: 11pt;
                 margin: 0;
                 width: 100%;
-                border:1px solid grey;
-                padding:3%;
+                border: 1px solid grey;
+                padding: 2%;
                 background-color: antiquewhite;
-                position: relative;
+                display: inline-table;
+                overflow: hidden;
             }
-            
+
+            img[src$='join.png'] {
+                float: right;
+                width: 60px;
+                cursor: pointer;
+            }
+
+
+            #course {
+            }
+
+            #groupName {
+                color: forestgreen;
+                font-weight: bold;
+            }
+
+            #iconPopup {
+            }
+
+            /* ----------------Below: popup window after join button is press.-------*/
+            #detailsOfGroups {
+                margin-top: 40%;
+                margin-left: 20%;
+                width: 50%;
+                display: none;
+                background-color: antiquewhite;
+            }
+
+            #heading {
+                padding: 1%;
+                border: 2px solid grey;
+            }
+
+            #close {
+                width:10%;
+                float: left;
+                color: brown;
+                cursor: pointer;
+            }
+
+
+            #author {
+                display: block;
+            }
+
+            #details {
+                height: 100%;
+                border: 2px solid grey;
+                padding: 3%;
+            }
+
+            #textDetails {
+                height:80%
+            }
+            #joinButton {
+                height:20%;
+                cursor: pointer;
+            }
+
         </style>
     </head>
     <body>
-
-        <!--<div id='test'> a test</div>-->
         <div id='content'>
-            
             <div id="mapid"></div>
-            
+
+            <div id="detailsOfGroups">
+                <div id="heading">
+                    <div id="info1"></div>
+                    <span id="info2"></span>
+                    <span id="info3"></span>
+                    <div id="author"></div>
+                </div>
+                <div id="details">
+                    <div id='textDetails'></div>
+                    <div id='joinButton'><img src='Images/Icon/Join.png' width='60px'></div>
+                </div>
+            </div>
         </div>
-
-        
-        
-
-
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        
+
         <script>
-
-
-
-            /*
-
+            /* Cordinates--------------------------------
             SW1:[49.250853, -123.002758]
             SW2:[49.250278, -123.00337]
             SW3:[49.249935, -123.002576]
@@ -108,12 +164,10 @@
             SE10:[49.24989, -123.000661]
             SE12:[49.25018, -123.001519]
             SE14:[49.24949, -123.000677]
-            */
+            -----------------------------------------------------*/
 
 
             var mymap = L.map('mapid').setView([49.2500, -123.0000], 17);
-
-
 
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -129,74 +183,188 @@
 
             var popup = L.popup();
 
-            /****** */
-            
-           // var img = 'images/orange icon.png';
-            //var img = document.createElement("img");
-              //  img.src = 'images/orange icon.png';
 
-            var greenIcon = L.icon({
-                //iconUrl: img,
-
-                iconUrl: 'images/orange icon.png',
-                iconSize:     [38, 95], // size of the icon
-                shadowSize:   [50, 64], // size of the shadow
-                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                shadowAnchor: [4, 62],  // the same for the shadow
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            var myIcon = L.icon({
+                iconUrl: 'images/icon/orange icon.png',
+                iconSize:     [40,45 ], // size of the icon
+                iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -60] // point from which the popup should open relative to the iconAnchor
             });
-            
-            var x = '50';
 
-            L.marker([49.250278, -123.00337], {icon: greenIcon}).addTo(mymap)
-            .bindPopup('<div id="toggle"><div class="nav">Account</div>' + x + '<div class="nav">Account</div><div class="nav">Searchasddewdwede</div><div class="nav">Favourtire</div><div class="nav">About</div></div>')
+
+            var join = '<img id =join src=images/icon/join.png float=right>';
+
+            function courseName(name) {
+                var course = '<span id="course">' + name + ' </span>';
+                return course;
+            }
+
+            function groupName(name) {
+                var group = '<span id="groupName">' + name + ' </span>';
+                return group;
+            }
+
+            function createGroup(groupNumber, course, nameOfGroup) {
+                var group = '<div id="group' + groupNumber + '">' + courseName(course) + groupName(nameOfGroup) + join + '</div>';
+                return group;
+            }
+
+            //Example: var group = '<div class="group1">' + courseName('comp1510') + groupName('Finals Sprint') + join + '</div>';
+            var group1 = createGroup(1, 'Comp1510', "Let's study");
+            var group2 = createGroup(2, 'Comp1712', "Finals Sprint");
+            var group3 = createGroup(3, 'comp1113', "Paul's group");
+            var group4 = createGroup(4, 'comm1116', "Report Discussion");
+            var group5 = createGroup(5, 'comp1712', "HELP!!!");
+            var group6 = createGroup(6, 'comp1536', "lab7");
+            var group7 = createGroup(7, 'comp1113', "Boolean Algebra");
+            var group8 = createGroup(8, 'comm1116', "Presentation");
+
+            //------------------------------The pins on the map--------------------------
+            //SE2
+            L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
+                .bindPopup('<div id="iconPopup">' + group1 + group2 + group3 + '</div>')
                 .openPopup();;
 
+            //SW1
+            L.marker([49.250853, -123.002758], {icon: myIcon}).addTo(mymap)
+                .bindPopup('<div id="iconPopup">' + group4 + group5 + group6 + group7 + group8 + '</div>')
+                .openPopup();;
+            //------------------------------------------------------------------------------------------
 
             
-            
-            /*
-            var LeafIcon = L.Icon.extend({
-	options: {
-		shadowUrl: 'images/orange icon.png',
-		iconSize:     [38, 95],
-		shadowSize:   [50, 64],
-		iconAnchor:   [22, 94],
-		shadowAnchor: [4, 62],
-		popupAnchor:  [-3, -76]
-	}
-});
-
-            var greenIcon = new LeafIcon({iconUrl: 'images/orange icon.png'}),
-
-            L.marker([49.250278, -123.00337], {icon: greenIcon}).addTo(map).bindPopup("I am a green leaf.");
-            */
-
-
-
+            //tells the longitute and latitue----------------------------
             function onMapClick(e) {
                 popup
                     .setLatLng(e.latlng)
                     .setContent("You clicked the map at " + e.latlng.toString())
                     .openOn(mymap);
-               
             }
 
-            mymap.on('click', onMapClick);
-
-
-            /*****--------------------------------------------***/
+            //--------------The Join Group Details popup window ----------------------------
             $(document).ready(function() {
-            
-            $('greenIcon').click(function(){
-                    $("#test").show();
-                    $("#toggle").show(600);
+                $(document).on('click', '#group1', function(){
+                    var courseName = document.getElementById("group1").childNodes[0].cloneNode(true);
+                    var groupName = document.getElementById("group1").childNodes[1].cloneNode(true);
+                    $('#info2').html(courseName);
+                    $('#info3').html(groupName);
+                    $('#author').html(" Created by: Jason");
+                    $('#textDetails').html("Meet me in SE2 403!");
+                    mymap.on('click', onMapClick);
                 });
-                $('h3').click(function(){
-                    $("#test").hide();
-                    $("#toggle").hide(600);
+            });
+            
+            
+            $(document).ready(function() {
+                $(document).on('click', '#group2', function(){
+                    var courseName = document.getElementById("group2").childNodes[0].cloneNode(true);
+                    var groupName = document.getElementById("group2").childNodes[1].cloneNode(true);
+                    $('#info2').html(courseName);
+                    $('#info3').html(groupName);
+                    $('#author').html(" Created by: Sandy");
+                    $('#textDetails').html("@SE2 304 computer lab, join me!");
+                    mymap.on('click', onMapClick);
+                });
+            });
+            
+            $(document).ready(function() {
+                $(document).on('click', '#group3', function(){
+                    var courseName = document.getElementById("group3").childNodes[0].cloneNode(true);
+                    var groupName = document.getElementById("group3").childNodes[1].cloneNode(true);
+                    $('#info2').html(courseName);
+                    $('#info3').html(groupName);
+                    $('#author').html(" Created by: Anna");
+                    $('#textDetails').html("SE2 224. Let's study!");
+                    mymap.on('click', onMapClick);
+                });
+            });
+
+            
+            $(document).ready(function() {
+                $(document).on('click', '#group4', function(){
+                    var courseName = document.getElementById("group4").childNodes[0].cloneNode(true);
+                    var groupName = document.getElementById("group4").childNodes[1].cloneNode(true);
+                    $('#info2').html(courseName);
+                    $('#info3').html(groupName);
+                    $('#author').html(" Created by: Sora");
+                    $('#textDetails').html("SW1 412. I have cookies!");
+                    mymap.on('click', onMapClick);
+                });
+            });
+            
+            $(document).ready(function() {
+                $(document).on('click', '#group5', function(){
+                    var courseName = document.getElementById("group5").childNodes[0].cloneNode(true);
+                    var groupName = document.getElementById("group5").childNodes[1].cloneNode(true);
+                    $('#info2').html(courseName);
+                    $('#info3').html(groupName);
+                    $('#author').html("Created by: James");
+                    $('#textDetails').html("SW1 303 See you soon!");
+                    mymap.on('click', onMapClick);
+                });
+            });
+
+
+                $(document).ready(function() {
+                    $(document).on('click', '#group6', function(){
+                        var courseName = document.getElementById('group6').childNodes[0].cloneNode(true);
+                        var groupName = document.getElementById('group6').childNodes[1].cloneNode(true);
+                        $('#info2').html(courseName);
+                        $('#info3').html(groupName);
+                        $('#author').html("Created by: Lucy");
+                        $('#textDetails').html("SW1 202. I am lonely :(");
+                        mymap.on('click', onMapClick);
+                    });
                 });
             
+            $(document).ready(function() {
+                    $(document).on('click', '#group7', function(){
+                        var courseName = document.getElementById('group6').childNodes[0].cloneNode(true);
+                        var groupName = document.getElementById('group6').childNodes[1].cloneNode(true);
+                        $('#info2').html(courseName);
+                        $('#info3').html(groupName);
+                        $('#author').html("Created by: David");
+                        $('#textDetails').html("SW1 354. I need friends!");
+                        mymap.on('click', onMapClick);
+                    });
+                });
+            
+            $(document).ready(function() {
+                    $(document).on('click', '#group8', function(){
+                        var courseName = document.getElementById('group8').childNodes[0].cloneNode(true);
+                        var groupName = document.getElementById('group8').childNodes[1].cloneNode(true);
+                        $('#info2').html(courseName);
+                        $('#info3').html(groupName);
+                        $('#author').html("Created by: Ken");
+                        $('#textDetails').html("SW1 322. Going to study till 5pm");
+                        mymap.on('click', onMapClick);
+                    });
+                });
+
+
+
+
+            /*****-----------------------The join group popup toggle on and off---------------------***/
+            $(document).ready(function() {
+                $(document).on('click', 'div[id^=group]', function(){
+                    $('#detailsOfGroups').show(200);
+                    $('#detailsOfGroups').css({
+                        'z-index': '1',
+                        'position' : 'absolute'
+                    });
+                    $('#info1').html("<span id='close'>close</span>");
+                    $('#mapid').css({
+                        'z-index': '-2',
+                    });
+                });
+            });
+
+            $(document).ready(function() {
+                $(document).on('click', '#close', function(){
+                    $('#detailsOfGroups').hide(200);
+                    $('#mapid').css({
+                        'z-index': '2'
+                    });
+                });
             });
         </script>
 
