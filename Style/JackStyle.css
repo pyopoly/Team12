@@ -1,0 +1,99 @@
+ html, body{
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+
+            #content {
+                width: 100%;
+                height:100%;
+            }
+
+            /*---------map scc-------*/
+            #mapid {
+                float: left;
+                width: 100%;
+                height: 100%;
+            }
+
+            .leaflet-popup-content-wrapper {
+                width:103%;
+            }
+
+            div.leaflet-control-attribution.leaflet-control {
+                display:none;
+            }
+
+
+
+            /*--------the popup when icon is clicked------*/
+
+            /*the rows in the icon popup*/
+            div[id^='group'] {
+                font-size: 11pt;
+                margin: 0;
+                width: 100%;
+                border: 1px solid grey;
+                padding: 2%;
+                background-color: antiquewhite;
+                display: inline-table;
+                overflow: hidden;
+            }
+
+            img[src$='join.png'] {
+                float: right;
+                width: 60px;
+                cursor: pointer;
+            }
+
+
+            #course {
+            }
+
+            #groupName {
+                color: forestgreen;
+                font-weight: bold;
+            }
+
+            #iconPopup {
+            }
+
+            /* ----------------Below: popup window after join button is press.-------*/
+            #detailsOfGroups {
+                margin-top: 40%;
+                margin-left: 20%;
+                width: 50%;
+                display: none;
+                background-color: antiquewhite;
+            }
+
+            #heading {
+                padding: 1%;
+                border: 2px solid grey;
+            }
+
+            #close {
+                width:10%;
+                float: left;
+                color: brown;
+                cursor: pointer;
+            }
+
+
+            #author {
+                display: block;
+            }
+
+            #details {
+                height: 100%;
+                border: 2px solid grey;
+                padding: 3%;
+            }
+
+            #textDetails {
+                height:80%
+            }
+            #joinButton {
+                height:20%;
+                cursor: pointer;
+            }
