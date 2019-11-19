@@ -66,15 +66,16 @@ var join = '<img id =join src=images/icon/join.png float=right>';
 function courseName(id, name) {
     var course = '<span id="course' + id + '">' + name + ' </span>';
     return course;
+
 }
 
-function groupName(name) {
-    var group = '<span id="groupName">' + name + ' </span>';
-    return group;
+function groupName(id, name) {
+    var gName = '<span id="groupName' + id + '">' + name + ' </span>';
+    return gName;
 }
 
 function createGroup(groupNumber, course, nameOfGroup) {
-    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(nameOfGroup) + join + '</div>';
+    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) + join + '</div>';
     return group;
 }
 
@@ -96,17 +97,17 @@ var group8 = createGroup(8, 'comm1116', "Presentation");
 
 
 
-
 //------------------------------The pins on the map--------------------------
 //SE2
 L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
-    .bindPopup('<div id="iconPopup">' + group1 + group2 + group3 + '</div>')
-    .openPopup();;
+    .bindPopup('<div class="iconPopup">' + group1 + group2 + group3 + '</div>')
+    .openPopup()
+;;
 
 //SW1
 L.marker([49.250853, -123.002758], {icon: myIcon}).addTo(mymap)
-    .bindPopup('<div id="iconPopup">' + group4 + group5 + group6 + group7 + group8 + '</div>')
-    .openPopup();;
+    .bindPopup('<div class="iconPopup">' + group4 + group5 + group6 + group7 + group8 + '</div>')
+;;
 //------------------------------------------------------------------------------------------
 
 
@@ -118,29 +119,40 @@ function onMapClick(e) {
         .openOn(mymap);
 }
 
+
+
+
+
+
+
 //--------------The Join Group Details popup window ----------------------------
 $(document).ready(function() {
     $(document).on('click', '#group1', function(){
         var courseName = document.getElementById("group1").childNodes[0].cloneNode(true);
         var groupName = document.getElementById("group1").childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html(" Created by: Jason");
-        $('#textDetails').html("Meet me in SE2 403!");
+        $('.info2').html(courseName);
+        $('.info3').html(groupName);
+        $('.author').html(" Created by: Jason");
+        $('.textDetails').html("Meet me in SE2 403!");
         mymap.on('click', onMapClick);
-
 
 
         db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
             console.log("current data is ...", snap.data());
-            document.getElementById("course1").innerHTML = snap.data().course;
-            //another way is snap.data()["message"]
-
-            console.log("hello");
-
-            console.log(document.getElementById('course1'));
-            console.log($('#info2').val())
-
+            document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
+           
+            
+            db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
+            console.log("current data is ...", snap.data());
+            document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
+           
+                
+                db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
+            console.log("current data is ...", snap.data());
+            document.getElementById("time").innerHTML = snap.data().timeCreated;
+          
+                     });
+        });
         });
     });
 });
@@ -150,12 +162,24 @@ $(document).ready(function() {
     $(document).on('click', '#group2', function(){
         var courseName = document.getElementById("group2").childNodes[0].cloneNode(true);
         var groupName = document.getElementById("group2").childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html(" Created by: Sandy");
-        $('#textDetails').html("@SE2 304 computer lab, join me!");
+        $('.info2').html(courseName);
+        $('.info3').html(groupName);
+        $('.author').html(" Created by: Sandy");
+        $('.textDetails').html("@SE2 304 computer lab, join me!");
         mymap.on('click', onMapClick);
+
+
+
+        db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
+            console.log("current data is ...", snap.data());
+            document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
+            console.log()
+
+        });
     });
+
+
+
 });
 
 $(document).ready(function() {
@@ -230,5 +254,21 @@ $(document).ready(function() {
         $('#textDetails').html("SW1 322. Going to study till 5pm");
         mymap.on('click', onMapClick);
     });
+});
+
+
+//$(document).ready(function() {
+// $(document).on('click', 'img[src$="orange icon.png"]', function(){
+
+
+
+db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
+    console.log("current data is ...", snap.data());
+    document.getElementById("course1").innerHTML = snap.data().course;
+});
+
+db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
+    console.log("current data is ...", snap.data());
+    document.getElementById("groupName1").innerHTML = snap.data().groupName;
 });
 

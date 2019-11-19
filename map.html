@@ -95,15 +95,23 @@
         <div id='content'>
             <div id="mapid"></div>
 
-            <div id="detailsOfGroups">
-                <div id="heading">
-                    <div id="info1"></div>
-                    <span id="info2"></span>
-                    <span id="info3"></span>
-                    <div id="author"></div>
+            <div class="detailsOfGroups">
+                <div class="heading">
+                    <div class="innerHeading">
+                    <div class="info1"></div>
+                    <span class="info2"></span>
+                    <span class="info3"></span>
+                    
+                    </div>
+                    <div class="innerHeading2">
+                    <span class="createBy">Created by: </span>
+                    <span class="author"></span>
+                        </div>
+                    <span class="createdTime">Time Created: </span>
+                    <span id="time">10pm</span>
                 </div>
-                <div id="details">
-                    <div id='textDetails'></div>
+                <div class="details">
+                    <div class='textDetails'></div>
                     <div id='joinButton'><img src='Images/Icon/Join.png' width='60px'></div>
                 </div>
             </div>
@@ -111,7 +119,24 @@
 
 
         <script>
+            /**
+            function displayCities(){
+            db.collection("cities")
+            .get()    //getting a collection of documents
+            .then(function(snap) {
+            //collection of documents
+            console.log(snap);
+            snap.forEach(functino(doc) { //iterate throguh collection
+            //console.log(doc);
+            console.log(doc.data()); //each document's data
+            });
+            });
             
+            }
+            
+            
+            displayCities();
+            */
         </script>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -120,7 +145,7 @@
         <!-- Jack's CSS style and java Script                                         -->
         <!------------------------------------------------------------------------------>
         <link rel="stylesheet" href="Style/JackStyle.css">
-        <script src="Scripts/JackJoinGroupPopUpWindowToggle.js"></script>
-        <script src="Scripts/JackMapJavaScript.js"></script>
+        <script src="Scripts/JackPopUp.js"></script>
+        <script src="Scripts/JackMap.js"></script>
     </body>
 </html>

@@ -47,19 +47,21 @@
             }
 
 
-            #course {
+            span[id^=course] {
+              
             }
 
-            #groupName {
+            span[id^=groupName] {
+               padding-left: 2%;
                 color: forestgreen;
                 font-weight: bold;
             }
 
-            #iconPopup {
+            .iconPopup {
             }
 
             /* ----------------Below: popup window after join button is press.-------*/
-            #detailsOfGroups {
+            .detailsOfGroups {
                 margin-top: 40%;
                 margin-left: 20%;
                 width: 50%;
@@ -67,7 +69,7 @@
                 background-color: antiquewhite;
             }
 
-            #heading {
+            .heading {
                 padding: 1%;
                 border: 2px solid grey;
             }
@@ -80,17 +82,16 @@
             }
 
 
-            #author {
-                display: block;
+            .author {
             }
 
-            #details {
+            .details {
                 height: 100%;
                 border: 2px solid grey;
                 padding: 3%;
             }
 
-            #textDetails {
+            .textDetails {
                 height:80%
             }
             #joinButton {
