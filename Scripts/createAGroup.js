@@ -19,8 +19,7 @@ $(document).ready(function() {
             groupName: nameOfGroup,
             course: nameOfCourse,
             location: setLocation,
-            details: detailsOfGroup,
-            timeCreated: currentDateandTime
+            details: detailsOfGroup
         })
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
