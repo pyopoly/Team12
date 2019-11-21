@@ -24,8 +24,8 @@ HTML for creating a group form-->
     <title>Create a Group</title>
     <link rel="stylesheet" href="./Style/createAGroup.css">
 
-    
-    <script>
+
+    <!--<script>
             // Your web app's Firebase configuration
             var firebaseConfig = {
                 apiKey: "AIzaSyBdBMvmyQQvDUE7yQK8kypXmL8Xko7SJhw",
@@ -41,14 +41,12 @@ HTML for creating a group form-->
             firebase.initializeApp(firebaseConfig);
 
             var db = firebase.firestore();
-        </script>
+        </script>-->
     
 </head>
 
 <body>
-    <!--create_a_group script, save data to our Firebase app when we 
-    click submit-->
-    <script src="./Scripts/createAGroup.js"></script>
+    
 
 <div class="form_container">
 <fieldset>
@@ -79,12 +77,16 @@ HTML for creating a group form-->
         <br/>
     </fieldset>
     
-    <button type="submit" class="create_group_btn">Create Group</button>            
+    <button type="submit" id="create_group_btn">Create Group</button>            
 
     </form>
 
 <br/>
 </div>
+
+<!--create_a_group script, save data to our Firebase app when we 
+    click submit-->
+    <script src="./Scripts/createAGroup.js"></script>
 </body>
 </html>
 
