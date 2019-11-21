@@ -5,10 +5,16 @@
     <meta charset="utf-8">
     <title> Studdy Buddy Login</title>
 
+    <link rel="stylesheet" type="text/css" href="Style/Default.css">
+
+
 </head>
 
 <body>
+    <h1> Welcome to Study Buddy</h1>
 
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
 
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
@@ -24,36 +30,14 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
 
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyBdBMvmyQQvDUE7yQK8kypXmL8Xko7SJhw",
-            authDomain: "studybuddy-ce7e9.firebaseapp.com",
-            databaseURL: "https://studybuddy-ce7e9.firebaseio.com",
-            projectId: "studybuddy-ce7e9",
-            storageBucket: "studybuddy-ce7e9.appspot.com",
-            messagingSenderId: "288586368350",
-            appId: "1:288586368350:web:c13d8a08c9249b15cbbbcf",
-            measurementId: "G-VYXB59FGNZ"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
+    <script src="/Scripts/firebase_config_team12.js"></script>
 
-
-
-
-    <h1> Welcome to Study Buddy</h1>
-
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
-
+    <script src="/Scripts/Users.js"></script>
 
     <script>
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -74,34 +58,22 @@
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: 'main.html',
+            signInSuccessUrl: 'index.html',
             signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                //firebase.auth.GithubAuthProvider.PROVIDER_ID,
+
                 firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                //firebase.auth.PhoneAuthProvider.PROVIDER_ID
+
             ],
             // Terms of service url.
-            tosUrl: 'main.html',
+            tosUrl: 'index.html',
             // Privacy policy url.
-            privacyPolicyUrl: 'main.html'
+            privacyPolicyUrl: 'index.html'
         };
         // The start method will wait until the DOM is loaded.
         ui.start('#firebaseui-auth-container', uiConfig);
     </script>
 
-
 </body>
-
-
-
-</body>
-
-
-
 
 
 </html>
