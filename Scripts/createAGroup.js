@@ -21,7 +21,7 @@ $(document).ready(function() {
         var detailsOfGroup = $('#groupDetails').val();
 
         console.log(nameOfGroup);
-        db.collection("Groups").doc("pol").set({
+        db.collection("Groups").doc("poly").set({
             groupName: nameOfGroup,
             course: nameOfCourse,
             location: setLocation,
