@@ -1,52 +1,93 @@
+<!--Author: Abeer Haroon 
+Version 1.0.2 November 20/2019
+
+HTML for creating a group form-->
+
 <!DOCTYPE html>
 <html>
 <head>
+    <!---->
+    <!--FIREBASE LIBRARY-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <!------------------------------------------------------>
+
+    <!--jQuery library, used to manipulate HTML elements with javascript-->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <!------------------------------------------------------->
+
+
+
     <meta charset="utf-8">
     <title>Create a Group</title>
     <link rel="stylesheet" href="./Style/createAGroup.css">
-    <script src="./Scripts/createAGroup.js"></script>
+
+    
+    <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBdBMvmyQQvDUE7yQK8kypXmL8Xko7SJhw",
+                authDomain: "studybuddy-ce7e9.firebaseapp.com",
+                databaseURL: "https://studybuddy-ce7e9.firebaseio.com",
+                projectId: "studybuddy-ce7e9",
+                storageBucket: "studybuddy-ce7e9.appspot.com",
+                messagingSenderId: "288586368350",
+                appId: "1:288586368350:web:c13d8a08c9249b15cbbbcf",
+                measurementId: "G-VYXB59FGNZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            var db = firebase.firestore();
+        </script>
+    
 </head>
+
 <body>
-<div id="form_container">
+    <!--create_a_group script, save data to our Firebase app when we 
+    click submit-->
+    <script src="./Scripts/createAGroup.js"></script>
+
+<div class="form_container">
 <fieldset>
-    <form>
-        <div id="groupNameDiv">
+    <form id="createAGroupForm">
+        <div class="groupNameDiv">
         Group Name: <input id="groupName" type="text"
         placeholder="i.e: Presentation prep" required>
         </div> <br/>
 
+        <div class="groupCourseDiv">
         Course: <input id="courseSelect" type="text" 
         placeholder="i.e COMP 1510" required>
-       
+        </div>
 
         <br/>
 </fieldset>
 <fieldset>
-        <div id="groupLocationDiv">
+        <div class="groupLocationDiv">
         Location: <input id="groupLocation" type="text"
         placeholder="i.e: SE14 320" required>
         </div>
         <br/>
 
-        <div id="groupDetailsDiv">
+        <div class="groupDetailsDiv">
         Details: <input id="groupDetails" type="text"
         placeholder="Add any additional details">
         </div>
         <br/>
+    </fieldset>
     
+    <button type="submit" class="create_group_btn">Create Group</button>            
+
     </form>
-</fieldset>
+
 <br/>
-
-<div id="makeGroupButtonDiv">
-<button id="makeGroupButton" type="submit">Create Group</button>
-</div>
-
-<!--Time Created and Created by [User] is collected
-not entered by user
--->
 </div>
 </body>
 </html>
 
-<!-- -->
+<!--Time Created and Created by [User] is collected
+not entered by user
+-->
