@@ -19,15 +19,16 @@ $(document).ready(function() {
         var nameOfCourse = $('#courseSelect').val();
         var setLocation = $('#groupLocation').val();
         var detailsOfGroup = $('#groupDetails').val();
+        
+        console.log("values are .." + nameOfCourse + nameOfCourse);
 
-        console.log(nameOfGroup);
-        db.collection("Groups").doc("poly").set({
+        db.collection("Groups").add({
             groupName: nameOfGroup,
             course: nameOfCourse,
             location: setLocation,
             details: detailsOfGroup
-        })
-    })
+        });
+    });
 });
 
 

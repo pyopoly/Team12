@@ -86,14 +86,14 @@ function createGroup(groupNumber, course, nameOfGroup) {
 
 
 //Example: var group = '<div class="group1">' + courseName('comp1510') + groupName('Finals Sprint') + join + '</div>';
-var group1 = createGroup(1, 'Comp1530', "Let's study");
-var group2 = createGroup(2, 'Comp1712', "Finals Sprint");
-var group3 = createGroup(3, 'comp1113', "Paul's group");
-var group4 = createGroup(4, 'comm1116', "Report Discussion");
-var group5 = createGroup(5, 'comp1712', "HELP!!!");
-var group6 = createGroup(6, 'comp1536', "lab7");
-var group7 = createGroup(7, 'comp1113', "Boolean Algebra");
-var group8 = createGroup(8, 'comm1116', "Presentation");
+var group1 = createGroup(0, 'Comp1530', "Let's study");
+var group2 = createGroup(1, 'Comp1712', "Finals Sprint");
+var group3 = createGroup(2, 'comp1113', "Paul's group");
+var group4 = createGroup(3, 'comm1116', "Report Discussion");
+var group5 = createGroup(4, 'comp1712', "HELP!!!");
+var group6 = createGroup(5, 'comp1536', "lab7");
+var group7 = createGroup(6, 'comp1113', "Boolean Algebra");
+var group8 = createGroup(7, 'comm1116', "Presentation");
 
 
 
@@ -120,43 +120,118 @@ function onMapClick(e) {
 }
 
 
+var idList = [];
+db.collection("Groups").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data().course);
+        idList.push(doc.id);
+        
+        console.log("show me the list     " + idList);
+    });
+});
 
 
+        console.log("show me the list     now    " + idList);
 
 
+//var docRef = db.collection("Groups").doc(doc.id);
+//
+//docRef.get().then(function(doc) {
+//    if (doc.exists) {
+//        console.log("Document data:", doc.data());
+//    } else {
+//        // doc.data() will be undefined in this case
+//        console.log("No such document!");
+//    }
+//}).catch(function(error) {
+//    console.log("Error getting document:", error);
+//});
+
+
+//    function showCities() {
+//        
+//        db.collection("cities").get()
+//      .then(function(citiessnap){
+//            citiessnap.forEach(function(city){
+//            console.log(city.data())
+//            var n = city.data().name;
+//            console.log(city.data()["name"]);
+//            document.getElementById("results").innerHTML = n;
+//            
+//            
+//        });
+            
+
+//
+//
+//$('#lakeBox').click(function(event) {
+//                    console.log(event);
+//                    var d = $(event.target).attr("id").charAt(7);
+//                    d = parseInt(d);
+//                    console.log(d);
+//                    $(event.target).text(data[d]['fishing']);
+//                });
 
 //--------------The Join Group Details popup window ----------------------------
 $(document).ready(function() {
-    $(document).on('click', '#group1', function(){
-        var courseName = document.getElementById("group1").childNodes[0].cloneNode(true);
-        var groupName = document.getElementById("group1").childNodes[1].cloneNode(true);
-        $('.info2').html(courseName);
-        $('.info3').html(groupName);
-        $('.author').html(" Created by: Jason");
-        $('.textDetails').html("Meet me in SE2 403!");
-        mymap.on('click', onMapClick);
+    $(document).on('click', '#group0', function(){
+//        var courseName = document.getElementById("group1").childNodes[0].cloneNode(true);
+//        var groupName = document.getElementById("group1").childNodes[1].cloneNode(true);
+//        //$('.info2').html(courseName);
+//        $('.info3').html(groupName);
+//        $('.author').html(" Created by: Jason");
+//        $('.textDetails').html("Meet me in SE2 403!");
+//        mymap.on('click', onMapClick);
 
 
-        db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
+        //console.log("the list at 0" +idList[0]);
+        $('#group0').click(function(event) {
+                   console.log("what is it?" +event);
+            
+                    var d = $(event.target).attr("id").charAt(5);
+                    d = parseInt(d);
+                    console.log(d);
+            //$('.info2').html(idList[d]['course']);
+            console.log("What is the id" + idList[d]);
+            
+            
+             db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
             console.log("current data is ...", snap.data());
+                 document.getElementById("course0").innerHTML = snap.data().course;
+                 console.log(snap.data().course);
+//                 
+//                 db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
+//    //console.log("current data is ...", snap.data());
+//    document.getElementById("course1").innerHTML = snap.data().course;
+});
+
+db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
+   // console.log("current data is ...", snap.data());
+    document.getElementById("groupName0").innerHTML = snap.data().groupName;
+});
+            //document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
+           //  console.log(idList[d]['course']);
+        
+        db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
+            //console.log("current data is ...", snap.data());
             document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
            
             
-            db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
-            console.log("current data is ...", snap.data());
+            db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
+            //console.log("current data is ...", snap.data());
             document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
            
                 
-                db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
-            console.log("current data is ...", snap.data());
+                db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
+            //console.log("current data is ...", snap.data());
             document.getElementById("time").innerHTML = snap.data().timeCreated;
-          
+          });
                      });
         });
         });
     });
 });
-
 
 $(document).ready(function() {
     $(document).on('click', '#group2', function(){
@@ -262,13 +337,5 @@ $(document).ready(function() {
 
 
 
-db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
-    console.log("current data is ...", snap.data());
-    document.getElementById("course1").innerHTML = snap.data().course;
-});
 
-db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
-    console.log("current data is ...", snap.data());
-    document.getElementById("groupName1").innerHTML = snap.data().groupName;
-});
 
