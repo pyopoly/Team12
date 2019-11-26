@@ -51,7 +51,6 @@ L.marker([49.249697, -123.002586]).addTo(mymap)
 
 var popup = L.popup();
 
-
 var myIcon = L.icon({
     iconUrl: 'images/icon/orange icon.png',
     iconSize:     [40,45 ], // size of the icon
@@ -66,7 +65,6 @@ var join = '<img id =join src=images/icon/join.png float=right>';
 function courseName(id, name) {
     var course = '<span id="course' + id + '">' + name + ' </span>';
     return course;
-
 }
 
 function groupName(id, name) {
@@ -75,16 +73,9 @@ function groupName(id, name) {
 }
 
 function createGroup(groupNumber, course, nameOfGroup) {
-
     var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) + '<img id =join' +groupNumber + ' src=images/icon/join.png float=right>' + '</div>';
     return group;
 }
-
-
-
-
-
-
 
 //Example: var group = '<div class="group1">' + courseName('comp1510') + groupName('Finals Sprint') + join + '</div>';
 var group1 = createGroup(0, 'Comp1530', "Let's study");
@@ -111,48 +102,47 @@ L.marker([49.250853, -123.002758], {icon: myIcon}).addTo(mymap)
 ;;
 
 
-db.collection("Groups").get().then(function(querySnapshot) {
 
-    console.log("what is the snap?" +querySnapshot);
+
+////////////////////////////////////////////////////////////////////////////
+//This checks if there are docs in Groups collection, then drops a pin at SE12
+//////////////////////////////////////////////////////////////////////////
+
+
+//This is the arrayList for group ids
+var idList = [];
+
+function dropPin(){
+    idList =[];
+db.collection("Groups").get().then(function(querySnapshot) {
+    //This querySnapshot.empty is a boolean that returns true is the collection is empty(no docs)
     if (!querySnapshot.empty) {
         var size = querySnapshot.size;
-
+        
         querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data().course);
+            //console.log(doc.id, " => ", doc.data().course);
             idList.push(doc.id);
         });
 
-
-
-        console.log("show me the list     now    " + idList);
         var g = "";
         for (let i = 0; i < size; i++) {
-
-            //  console.log(idList[0]);
-            // console.log("what is " + i);
-            // console.log(idList[i]);
             db.collection('Groups').doc(idList[i]).onSnapshot(function (snap) {
-                //console.log("current data is ...", snap.data());
-                console.log(snap.data().course);
-                //                document.getElementById("course"+i).innerHTML = snap.data().course;
-
+                //console.log(snap.data().course);
                 g += createGroup(i, snap.data().course, snap.data().groupName);
-                //console.log(group1);
-                // console.log("what is g here last? " + g);
                 L.marker([49.25018, -123.001519], {icon: myIcon}).addTo(mymap)
                     .bindPopup('<div class="iconPopup">' + g + '</div>');
             });
-        }
-    }
+        };
+    };
 });
+};
 
+dropPin();
 
+////////////////////////////////////////////////////////////////////////////
+//tells the longitute and latitue
+//////////////////////////////////////////////////////////////////////////
 
-//------------------------------------------------------------------------------------------
-
-
-//tells the longitute and latitue----------------------------
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
@@ -160,210 +150,96 @@ function onMapClick(e) {
         .openOn(mymap);
 }
 
-//////////////////////////////////////////////////////////////////////
-////Store Groups ID in a list
-var idList = [];
-
-//db.collection("Groups").get().then(function(querySnapshot) {
-//    querySnapshot.forEach(function(doc) {
-//        // doc.data() is never undefined for query doc snapshots
-//        console.log(doc.id, " => ", doc.data().course);
-//        idList.push(doc.id);
-//    });
-//
-//
-//    console.log("show me the list     now    " + idList);
-//});
-//
-//
 
 
 
+////////////////////////////////////////////////////////////////////////////
+//This adds groups automatically
+//////////////////////////////////////////////////////////////////////////
 
-//--------------The Join Group Details popup window ----------------------------
+//this happens when the first join button is clicked.
 $(document).ready(function() {
     $(document).on('click', 'img[id^=join]', function(){
 
         $('img[id^=join]').click(function(event) {
-            console.log("what is it the event?" +event);
-
-            console.log($(event.target).attr("id"));
+            //console.log("what is it the event?" +event);
+            //console.log($(event.target).attr("id"));
             var d = $(event.target).attr("id").charAt(4);
             d = parseInt(d);
-            //console.log(d);
-            //$('.info2').html(idList[d]['course']);
-            console.log("What is the id" + idList[d]);
-
-
+            //console.log("What is the id" + idList[d]);
 
             db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
-                console.log("current data is ...", snap.data());
                 document.getElementById("course" + d).innerHTML = snap.data().course;
-                console.log(snap.data().course);
                 $('.info3').html("<br>" + courseName(d, snap.data().course));
                 $('.info2').html( groupName(d, snap.data().groupName));
-                
+
                 document.getElementById("groupName" + d).innerHTML = snap.data().groupName;
                 document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
                 document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
                 document.getElementById("time").innerHTML = snap.data().time;
             });
-
             
+            //////////////////
+            //show the group details popup window
             $('.detailsOfGroups').show(200);
-                    $('.detailsOfGroups').css({
-                        'z-index': '1',
-                        'position' : 'absolute'
-                    });
-                    $('.info1').html("<span id='close'>close</span>");
-                    $('#mapid').css({
-                        'z-index': '-2',
-                    });
-      
+            $('.detailsOfGroups').css({
+                'z-index': '1',
+                'position' : 'absolute'
+            });
+            $('.info1').html("<span id='close'>close</span>");
+            $('#mapid').css({
+                'z-index': '-2',
+            });
             
-            
+            //////////
+            //remove groups when the confirm yes buttons is clicked
+            $(document).on('click', '#yes', function() {
+                db.collection("Groups").doc(idList[d]).delete().then(function() {
+                    console.log("Document successfully deleted!");
+                }).catch(function(error) {
+                    console.error("Error removing document: ", error);
+                });
+                //close all windows.
+                closeAll();
+                $("#group" + d).remove();
+                //drop a new pin to refresh all divs.
+                dropPin();
+                console.log(idList);
+            });
         });
     });
 });
 
 
-
+////////////////////////////////////////////////////////////////////////
+///This shows the delete groups confirm popup window
+///////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
     $(document).on('click', '#joinButton', function(){
-        
-        
-              
-            $('#confirm').show(200);
-        
+        $('#confirm').show(200);
         $('#confirm').css({
-                        'z-index': '1',
-                        'position' : 'absolute'
-                    });
-                    $('#mapid').css({
-                        'z-index': '-2',
-                    });
-        
+            'position' : 'absolute'
+        });
+        $('#mapid').css({
+            'z-index': '-2',
+        });
     })
 })
 
 
 
-///////////////////////////////////////////////////////
-////////////These are manually entered in, no database
-//////////////////////////////////////////////
-$(document).ready(function() {
-    $(document).on('click', '#group2', function(){
-        var courseName = document.getElementById("group2").childNodes[0].cloneNode(true);
-        var groupName = document.getElementById("group2").childNodes[1].cloneNode(true);
-        $('.info2').html(courseName);
-        $('.info3').html(groupName);
-        $('.author').html(" Created by: Sandy");
-        $('.textDetails').html("@SE2 304 computer lab, join me!");
-        mymap.on('click', onMapClick);
 
-
-
-        db.collection('Groups').doc('Group 1').onSnapshot(function (snap) {
-            console.log("current data is ...", snap.data());
-            document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
-            console.log()
-
-        });
+////////////////////////////////////////////////////////////////////////////
+//This is the function to close popup windows
+//////////////////////////////////////////////////////////////////////////
+function closeAll(){
+    $('.detailsOfGroups').hide(200);
+    $('#confirm').hide(200);
+    $('#mapid').css({
+        'z-index': '2'
     });
+};
 
-
-
-});
-
-$(document).ready(function() {
-    $(document).on('click', '#group3', function(){
-        var courseName = document.getElementById("group3").childNodes[0].cloneNode(true);
-        var groupName = document.getElementById("group3").childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html(" Created by: Anna");
-        $('#textDetails').html("SE2 224. Let's study!");
-        mymap.on('click', onMapClick);
-    });
-});
-
-
-$(document).ready(function() {
-    $(document).on('click', '#group4', function(){
-        var courseName = document.getElementById("group4").childNodes[0].cloneNode(true);
-        var groupName = document.getElementById("group4").childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html(" Created by: Sora");
-        $('#textDetails').html("SW1 412. I have cookies!");
-        mymap.on('click', onMapClick);
-    });
-});
-
-$(document).ready(function() {
-    $(document).on('click', '#group5', function(){
-        var courseName = document.getElementById("group5").childNodes[0].cloneNode(true);
-        var groupName = document.getElementById("group5").childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html("Created by: James");
-        $('#textDetails').html("SW1 303 See you soon!");
-        mymap.on('click', onMapClick);
-    });
-});
-
-
-$(document).ready(function() {
-    $(document).on('click', '#group6', function(){
-        var courseName = document.getElementById('group6').childNodes[0].cloneNode(true);
-        var groupName = document.getElementById('group6').childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html("Created by: Lucy");
-        $('#textDetails').html("SW1 202. I am lonely :(");
-        mymap.on('click', onMapClick);
-    });
-});
-
-$(document).ready(function() {
-    $(document).on('click', '#group7', function(){
-        var courseName = document.getElementById('group6').childNodes[0].cloneNode(true);
-        var groupName = document.getElementById('group6').childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html("Created by: David");
-        $('#textDetails').html("SW1 354. I need friends!");
-        mymap.on('click', onMapClick);
-    });
-});
-
-$(document).ready(function() {
-    $(document).on('click', '#group8', function(){
-        var courseName = document.getElementById('group8').childNodes[0].cloneNode(true);
-        var groupName = document.getElementById('group8').childNodes[1].cloneNode(true);
-        $('#info2').html(courseName);
-        $('#info3').html(groupName);
-        $('#author').html("Created by: Ken");
-        $('#textDetails').html("SW1 322. Going to study till 5pm");
-        mymap.on('click', onMapClick);
-    });
-});
-
-
-//$(document).ready(function() {
-// $(document).on('click', 'img[src$="orange icon.png"]', function(){
-
-
-////////
-////////Hide the pop up window
-            $(document).ready(function() {
-                $(document).on('click', '#close', function(){
-                    $('.detailsOfGroups').hide(200);
-                    $('#mapid').css({
-                        'z-index': '2'
-                    });
-                });
-            });
-
-
+$(document).on('click', '#close', closeAll);
+$(document).on('click', '#no', closeAll);
 
