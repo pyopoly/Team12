@@ -45,9 +45,10 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(mymap);
 
 
-L.marker([49.249697, -123.002586]).addTo(mymap)
-    .bindPopup('Comp1510<br>"Cram for Finals!!"<br><a href="http://www.bcit.ca">Join This Group</a>')
-    .openPopup();
+///This is the original marker from the map developer
+//L.marker([49.249697, -123.002586]).addTo(mymap)
+//    .bindPopup('Comp1510<br>"Cram for Finals!!"<br><a href="http://www.bcit.ca">Join This Group</a>')
+//    .openPopup();
 
 var popup = L.popup();
 
@@ -110,12 +111,21 @@ L.marker([49.250853, -123.002758], {icon: myIcon}).addTo(mymap)
 
 
 //This is the arrayList for group ids
+var markerSE12 = {};
+var markerSE2 = {};
 var idList = [];
 var idListSE2 = [];
 var idListSE12 = [];
-
+var g = "";
+var x= "";
 function dropPin(){
+
+    //Refreshes all variables so no repeating divs will appear.
     idList =[];
+    idListSE12 = [];
+    idListSE2 = [];
+    g ="";
+    x = "";
     db.collection("Groups").get().then(function(querySnapshot) {
         //This querySnapshot.empty is a boolean that returns true is the collection is empty(no docs)
         if (!querySnapshot.empty) {
@@ -123,67 +133,66 @@ function dropPin(){
 
             querySnapshot.forEach(function(doc) {
                 //console.log(doc.id, " => ", doc.data().course);
-                console.log(doc.data().location);
+                //console.log(doc.data().location);
                 let location = doc.data().location;
                 if(location == "SE12") {
                     idListSE12.push(doc.id);
                 }
                 if(location == "SE2") {
                     idListSE2.push(doc.id);
-                    console.log("SE2 pushed: " + doc.id);
+                    //console.log("SE2 pushed: " + doc.id);
                 }
                 idList.push(doc.id);
             });
 
             let se2Size = idListSE2.length;
             let se12Size = idListSE12.length;
-            var g = "";
 
-            console.log(se12Size);
+
+            //console.log(se12Size);
             function se12() {
-
-
                 for (let i = 0; i < se12Size; i++) {
                     db.collection('Groups').doc(idListSE12[i]).onSnapshot(function (snap) {
                         //console.log(snap.data().course);
                         var indexSe12 = idList.indexOf(idListSE12[i]);
                         g += createGroup(indexSe12, snap.data().course, snap.data().groupName);
                         //SE12
-                        L.marker([49.25018, -123.001519], {icon: myIcon}).addTo(mymap)
+                        markerSE12 = new L.marker([49.25018, -123.001519], {icon: myIcon}).addTo(mymap)
                             .bindPopup('<div class="iconPopup">' + g + '</div>');
+                        mymap.addLayer(markerSE12);
+
                     });
                 };
-
             }
-            se12();
+
             //console.log(idListSE2);
-            console.log(" The first g?" + g);
-            var x= "";
-            for (let i = 0; i < se2Size; i++) {
-                console.log(" The second g?" + g);
-                db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
-                    console.log("SE2 List: " + idListSE2);
+            function se2() {
+                for (let i = 0; i < se2Size; i++) {
 
-                    // console.log("what is g the third time " + g);
-                    var indexSe2 = idList.indexOf(idListSE2[i]);
-                    x += createGroup(indexSe2, snap.data().course, snap.data().groupName);
-                    //SE2
-                    console.log("what is g the fourth time" + g);
-                    L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
-                        .bindPopup('<div class="iconPopup">' + x + '</div>');
-                    //console.log(g);
-                });
+                    // console.log(" The second x?" + x);
+                    db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
+                        //console.log("SE2 List: " + idListSE2);
+                        //console.log("what is x the third time " + x);
+                        var indexSe2 = idList.indexOf(idListSE2[i]);
+                        x += createGroup(indexSe2, snap.data().course, snap.data().groupName);
+                        //SE2
+                        //console.log("what is x the fourth time" + x);
+                        markerSE2 = L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
+                            .bindPopup('<div class="iconPopup">' + x + '</div>');
+                        mymap.addLayer(markerSE2);
+                        //console.log(markerSE2);
+                    });
+                };
             };
-
-            //SE2
-            //L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
-            //    .bindPopup('<div class="iconPopup">' + group1 + group2 + group3 + '</div>')
-            //    .openPopup()
-            //;;
+            //se2 function is run
+            se2();
+            //se12 function is run
+            se12();
         };
     });
 };
 
+//drop pin function is run
 dropPin();
 
 ////////////////////////////////////////////////////////////////////////////
@@ -204,7 +213,7 @@ function onMapClick(e) {
 //This adds groups automatically
 //////////////////////////////////////////////////////////////////////////
 
-//this happens when the first join button is clicked.
+///////this happens when the first join button is clicked.
 $(document).ready(function() {
     $(document).on('click', 'img[id^=join]', function(){
 
@@ -226,7 +235,7 @@ $(document).ready(function() {
                 document.getElementById("time").innerHTML = snap.data().time;
             });
 
-            //////////////////
+            ///////////////////////////////////////////////
             //show the group details popup window
             $('.detailsOfGroups').show(200);
             $('.detailsOfGroups').css({
@@ -238,8 +247,10 @@ $(document).ready(function() {
                 'z-index': '-2',
             });
 
-            //////////
+            /////////////////////////////////////////////
             //remove groups when the confirm yes buttons is clicked
+            var emptyse2 = [];
+            var emptyse12 = [];
             $(document).on('click', '#yes', function() {
                 db.collection("Groups").doc(idList[d]).delete().then(function() {
                     console.log("Document successfully deleted!");
@@ -249,9 +260,40 @@ $(document).ready(function() {
                 //close all windows.
                 closeAll();
                 $("#group" + d).remove();
-                //drop a new pin to refresh all divs.
+                location.reload();
+
+//This checks if the location is empty, if so, then refreshes the page.
+//                db.collection("Groups").get().then(function(querySnapshot) {
+//                    if (!querySnapshot.empty) {
+//                        emptyse2 = [];
+//                        emptyse12 = [];
+//                        querySnapshot.forEach(function(doc) {
+//
+//                            //console.log(doc.id, " => ", doc.data().course);
+//                            //console.log(doc.data().location);
+//                            let place = doc.data().location;
+//                            if(place == "SE12") {
+//                                emptyse12.push(doc.id);
+//                                //console.log(emptyse12);
+//                            }
+//                            if(place == "SE2") {
+//                                emptyse2.push(doc.id);
+//                                console.log(emptyse2);
+//                                console.log(emptyse2.length);
+//                            }
+//
+//                        });
+//                        console.log("The lenght here " + emptyse2.length);
+//                        console.log("The lenght here " + emptyse12.length);
+//                        if (emptyse2.length == 0 || emptyse12.length == 0) {
+//                            location.reload();
+//
+//                        }
+//                    }
+//                })
+
+                //Drop new pins to refresh everything.
                 dropPin();
-                console.log(idList);
             });
         });
     });
