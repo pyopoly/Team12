@@ -1,4 +1,4 @@
-<!--Author: Abeer Haroon 
+<!--Author: Abeer Haroon
 Version 1.0.2 November 20/2019
 
 HTML for creating a group form-->
@@ -25,7 +25,29 @@ HTML for creating a group form-->
     <link rel="stylesheet" href="./Style/createAGroup.css">
 
 
+<<<<<<< HEAD
     <script src="/Scripts/firebase_config_team12.js"></script>
+=======
+    <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBdBMvmyQQvDUE7yQK8kypXmL8Xko7SJhw",
+                authDomain: "studybuddy-ce7e9.firebaseapp.com",
+                databaseURL: "https://studybuddy-ce7e9.firebaseio.com",
+                projectId: "studybuddy-ce7e9",
+                storageBucket: "studybuddy-ce7e9.appspot.com",
+                messagingSenderId: "288586368350",
+                appId: "1:288586368350:web:c13d8a08c9249b15cbbbcf",
+                measurementId: "G-VYXB59FGNZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            var db = firebase.firestore();
+        </script>
+  
+
+>>>>>>> dfa8c8c2f9b7c5f6160a4deae3547a978a409d0f
     
 </head>
 
@@ -36,41 +58,46 @@ HTML for creating a group form-->
 <fieldset>
     <form id="createAGroupForm">
         <div class="groupNameDiv">
-        Group Name: <input id="groupName" type="text"
+        Group Name: <input id="groupNameID" name="groupNameA" type="text"
         placeholder="i.e: Presentation prep" required>
         </div> <br/>
 
         <div class="groupCourseDiv">
-        Course: <input id="courseSelect" type="text" 
-        placeholder="i.e COMP 1510" required>
+        Course: <input id="courseSelectID" name="courseSelectA"
+        type="radio" value="COMP1510" required>COMP 1510
+        <br/>
+        <input name="courseSelectA" type="radio" value="COMP1536" required>COMP 1536
+        <br/>
+        <input name="courseSelectA" type="radio" value="COMP1113" required>COMP 1113
         </div>
 
         <br/>
 </fieldset>
 <fieldset>
         <div class="groupLocationDiv">
-        Location: <input id="groupLocation" type="text"
-        placeholder="i.e: SE14 320" required>
+        Location: <input id="groupLocationID" name="groupLocationA" type="radio"
+        value="SE12" required>SE12
+        <input name="groupLocationA" type="radio" value="SE2" required>SE2
         </div>
         <br/>
 
         <div class="groupDetailsDiv">
-        Details: <input id="groupDetails" type="text"
-        placeholder="Add any additional details">
+        Details: <input id="groupDetailsID" name="groupDetailsA"
+        type="text" placeholder="Add any additional details">
         </div>
         <br/>
     </fieldset>
     
-    <button type="submit" id="create_group_btn">Create Group</button>            
+    <button type="submit" id="create_group_btn">Create Group</button>
 
     </form>
 
 <br/>
 </div>
 
-<!--create_a_group script, save data to our Firebase app when we 
+<!--create_a_group script, save data to our Firebase app when we
     click submit-->
-    <script src="./Scripts/createAGroup.js"></script>
+    <script src="./Scripts/createAGroupTrialAbr.js"></script>
 </body>
 </html>
 

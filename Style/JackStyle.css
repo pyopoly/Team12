@@ -1,100 +1,120 @@
- html, body{
-                width: 100%;
-                height: 100%;
-                text-align: center;
-            }
+html, body{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
 
-            #content {
-                width: 100%;
-                height:100%;
-            }
+#content {
+    width: 100%;
+    height:100%;
+}
 
-            /*---------map scc-------*/
-            #mapid {
-                float: left;
-                width: 100%;
-                height: 100%;
-            }
+/*---------map scc-------*/
+#mapid {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
 
-            .leaflet-popup-content-wrapper {
-                width:103%;
-            }
+.leaflet-popup-content-wrapper {
+    width:103%;
+}
 
-            div.leaflet-control-attribution.leaflet-control {
-                display:none;
-            }
-
-
-
-            /*--------the popup when icon is clicked------*/
-
-            /*the rows in the icon popup*/
-            div[id^='group'] {
-                font-size: 11pt;
-                margin: 0;
-                width: 100%;
-                border: 1px solid grey;
-                padding: 2%;
-                background-color: antiquewhite;
-                display: inline-table;
-                overflow: hidden;
-            }
-
-            img[src$='join.png'] {
-                float: right;
-                width: 60px;
-                cursor: pointer;
-            }
+div.leaflet-control-attribution.leaflet-control {
+    display:none;
+}
 
 
-            span[id^=course] {
-              
-            }
 
-            span[id^=groupName] {
-               padding-left: 2%;
-                color: forestgreen;
-                font-weight: bold;
-            }
+/*--------the popup when icon is clicked------*/
 
-            .iconPopup {
-            }
+/*the rows in the icon popup*/
+div[id^='group'] {
+    font-size: 11pt;
+    margin: 0;
+    width: 100%;
+    border: 1px solid grey;
+    padding: 2%;
+    background-color: antiquewhite;
+    display: inline-table;
+    overflow: hidden;
+}
 
-            /* ----------------Below: popup window after join button is press.-------*/
-            .detailsOfGroups {
-                margin-top: 40%;
-                margin-left: 20%;
-                width: 50%;
-                display: none;
-                background-color: antiquewhite;
-            }
+img[src$='join.png'] {
+    float: right;
+    width: 60px;
+    cursor: pointer;
 
-            .heading {
-                padding: 1%;
-                border: 2px solid grey;
-            }
-
-            #close {
-                width:10%;
-                float: left;
-                color: brown;
-                cursor: pointer;
-            }
+}
 
 
-            .author {
-            }
+span[id^=course] {
+    padding-right: 0%;
+    display: inline-table
+}
 
-            .details {
-                height: 100%;
-                border: 2px solid grey;
-                padding: 3%;
-            }
+span[id^=groupName] {
+    padding-left: 2%;
+    color: forestgreen;
+    font-weight: bold;
 
-            .textDetails {
-                height:80%
-            }
-            #joinButton {
-                height:20%;
-                cursor: pointer;
-            }
+    display: inline-table;
+}
+
+.iconPopup {
+}
+
+/* ----------------Below: popup window after join button is pressed.-------*/
+.detailsOfGroups {
+    margin-top: 40%;
+    margin-left: 20%;
+    width: 50%;
+    display: none;
+    background-color: antiquewhite;
+}
+
+#confirm {
+    margin-top: 90%;
+    margin-left: 30%;
+    width: 40%;
+    height: 8%;
+    display: none;
+    background-color: antiquewhite;
+    z-index: 10;
+    border: 1px solid grey;
+    overflow: hidden;
+}
+
+
+#yes, #no, #joinButton{
+    height:20px;
+    cursor: pointer;
+}
+
+.heading {
+    padding: 1%;
+    border: 2px solid grey;
+}
+
+#close {
+    float: right;
+    color: brown;
+    cursor: pointer;
+}
+
+span.info3 {
+
+}
+
+.author {
+}
+
+.details {
+    height: 100%;
+    border: 2px solid grey;
+    padding: 3%;
+}
+
+.textDetails {
+    height:80%
+}

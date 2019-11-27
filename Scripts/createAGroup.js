@@ -19,6 +19,8 @@ $(document).ready(function() {
         var nameOfCourse = $('#courseSelect').val();
         var setLocation = $('#groupLocation').val();
         var detailsOfGroup = $('#groupDetails').val();
+        
+        console.log("values are .." + nameOfCourse + nameOfCourse);
 
         console.log(nameOfGroup);
         db.collection("Groups").doc().set({
@@ -26,8 +28,8 @@ $(document).ready(function() {
             course: nameOfCourse,
             location: setLocation,
             details: detailsOfGroup
-        })
-    })
+        });
+    });
 });
 
 
