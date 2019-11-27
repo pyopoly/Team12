@@ -1,209 +1,214 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"> 
-        <title>My BCIT Project</title>
-        <meta name="comp1930 boilerplate code" content="my bcit project">
-        <meta name="author" content="BCIT">
 
-        <!-- Bootstrap for Mobile-first, and JQuery -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="html" href="head.html">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>My BCIT Project</title>
+    <meta name="comp1930 boilerplate code" content="my bcit project">
+    <meta name="author" content="BCIT">
 
-        <!-- Optional styles and scripts of your own -->
-        <link rel="stylesheet" href="styles/style.css">
+    <!-- Bootstrap for Mobile-first, and JQuery -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="html" href="head.html">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
-        <!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- Optional styles and scripts of your own -->
+    <link rel="stylesheet" href="Style/Default.css">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
 https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
 
 
-        <!-- This is the configuration that connects my web files to my firebase project -->
-        <script src="scripts/firebase_config_team12.js"></script>
-        
-        
-        
-        
-        <!-- STYLING-->
-
-        <style>
-
-            html, body {
-                height: 100%;
-                text-align: center;
-            }
-            .container {
-                padding-top: 20%;
-                text-align: center;
-                background-image: url(Images/Background/books.PNG);
-                height: 100%;
-                
-            }
-
-            .row {
-                text-align: center;
-            }
-
-            img {
-                width:50px;
-                height:auto;
-            }
-
-            .innerBox {
-                width: 50%;
-                height: 130px;
-                padding: 10px;
-            }
-
-            .imgBox {
-                background-color: rgba(255,255,255, 0.6);
-                margin-left: 35%;
-                width:35%;
-                height: 50%;
-                padding: 5%;
-            }
-
-            .titleBox {
-            }
-            h3{
-                color: whitesmoke;
-                text-shadow:
-                    -1px -1px 0 #000,
-                    1px -1px 0 #000,
-                    -1px 1px 0 #000,
-                    1px 1px 0 #000;
-            }
-        </style>
-
-    </head>
+    <!-- This is the configuration that connects my web files to my firebase project -->
+    <script src="scripts/firebase_config_team12.js"></script>
 
 
-    <body>
-
-        <!-------------------------------------->
-        <!-- The following is HTML for layout -->
-        <!-------------------------------------->
-
-        <!-- Header Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="">StudyBuddy <span id="hello">Hello</span></a>   
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link"  href="">about</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html" class="visible">login/signup</a>
-                    </li>
-
-                    <button class="nav-item" id="logMeOut"  class="nav-link">Logout</button> 
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Title Centred Landing Picture -->
-
-        <!-- A fluid container that uses the full witdh -->
-        <div class="container">
-            <div class="row">
-                <div class="innerBox" >
-
-                    <div class="imgBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';">
-                            <img id="add" src="images/Icon/add.png" class="img-circle">
-                        </a>
-                    </div>
-
-                    <div class="titleBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';">
-                            <h3 id="track">Create Now</h3>
-                        </a>
-                    </div>
-                </div>
 
 
-                <div class="innerBox" >
+    <!-- STYLING-->
 
-                    <div class="imgBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';" >
-                            <img id="map" src="images/icon/map.png" class="img-circle">
-                        </a>
-                    </div>
+    <style>
+        html,
+        body {
+            height: 100%;
+            text-align: center;
+        }
 
-                    <div class="titleBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';">
-                            <h3 id="track">Explore Map</h3>
-                        </a>
-                    </div>
-                </div>
+        .container {
+            padding-top: 20%;
+            text-align: center;
+            background-image: url(Images/Background/books.PNG);
+            height: 100%;
 
-            </div>
-            <div class="row">
+        }
 
-                <div class="innerBox" pattern="float:left">
-                    <div class="imgBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';" pattern="float:left">
-                            <img id="social" src="images/icon/people.png" class="img-circle">
-                        </a>
-                    </div>
+        .row {
+            text-align: center;
+        }
 
-                    <div class="titleBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';">
-                            <h3 id="track">Get Social</h3>
-                        </a>
-                    </div>
-                </div>
+        img {
+            width: 50px;
+            height: auto;
+        }
+
+        .innerBox {
+            width: 50%;
+            height: 130px;
+            padding: 10px;
+        }
+
+        .imgBox {
+            background-color: rgba(255, 255, 255, 0.6);
+            margin-left: 35%;
+            width: 35%;
+            height: 50%;
+            padding: 5%;
+        }
+
+        .titleBox {}
+
+        h3 {
+            color: whitesmoke;
+            text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+
+        .hide {
+            display: none;
+        }
+
+    </style>
+
+</head>
 
 
-                <div class="innerBox" pattern="float:right">
-                    <div class="imgBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';" pattern="float:right">
-                            <img id="QnA" src="images/Icon/qna.png" class="img-circle">
-                        </a>
-                    </div>
-                    <div class="titleBox">
-                        <a href="login.html" onmouseover="this.style.cursor='pointer';">
-                            <h3 id="track">Ask Away</h3>
-                        </a>
-                    </div>
-                </div>
+<body>
 
-            </div>
+    <!-------------------------------------->
+    <!-- The following is HTML for layout -->
+    <!-------------------------------------->
+
+    <!-- Header Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="">StudyBuddy Welcome &nbsp; <span id="hello"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="">about</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hide" href="login.html" id="login">login/signup</a>
+                </li>
+    
+                <button class="nav-item hide nav-link" id="logMeOut">Logout</button>
+            </ul>
         </div>
+    </nav>
+
+    <!-- Title Centred Landing Picture -->
+
+    <!-- A fluid container that uses the full witdh -->
+    <div class="container">
+        <div class="row">
+            <div class="innerBox">
+
+                <div class="imgBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';">
+                        <img id="add" src="images/Icon/add.png" class="img-circle">
+                    </a>
+                </div>
+
+                <div class="titleBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';">
+                        <h3 id="track">Create Now</h3>
+                    </a>
+                </div>
+            </div>
 
 
-        <!-- Where the common footer goes -->
-        <OBJECT width=100% data="common_footer.html">
+            <div class="innerBox">
 
-        </OBJECT>
+                <div class="imgBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';">
+                        <img id="map" src="images/icon/map.png" class="img-circle">
+                    </a>
+                </div>
 
-        <!------------------------------------------------------------------------------->
-        <!-- Javascript goes here.                                                     -->
-        <!------------------------------------------------------------------------------->
-        <script src="Scripts/Users.js"></script>
+                <div class="titleBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';">
+                        <h3 id="track">Explore Map</h3>
+                    </a>
+                </div>
+            </div>
 
-        
+        </div>
+        <div class="row">
+
+            <div class="innerBox" pattern="float:left">
+                <div class="imgBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';" pattern="float:left">
+                        <img id="social" src="images/icon/people.png" class="img-circle">
+                    </a>
+                </div>
+
+                <div class="titleBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';">
+                        <h3 id="track">Get Social</h3>
+                    </a>
+                </div>
+            </div>
 
 
-        <script>
-            createUser();
-            showName();
+            <div class="innerBox" pattern="float:right">
+                <div class="imgBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';" pattern="float:right">
+                        <img id="QnA" src="images/Icon/qna.png" class="img-circle">
+                    </a>
+                </div>
+                <div class="titleBox">
+                    <a href="login.html" onmouseover="this.style.cursor='pointer';">
+                        <h3 id="track">Ask Away</h3>
+                    </a>
+                </div>
+            </div>
 
-        </script>
+        </div>
+    </div>
 
-    </body>
+
+    <!-- Where the common footer goes -->
+    <OBJECT width=100% data="common_footer.html">
+
+    </OBJECT>
+
+    <!------------------------------------------------------------------------------->
+    <!-- Javascript goes here.                                                     -->
+    <!------------------------------------------------------------------------------->
+    <script src="Scripts/Users.js"></script>
+
+
+
+
+    <script>
+        createUser();
+        showName();
+    </script>
+
+</body>
+
 </html>
-
-

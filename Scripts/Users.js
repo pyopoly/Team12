@@ -37,10 +37,22 @@ function showName() {
   
 (function () {
     var but = document.getElementById("logMeOut");
-    but.onclick = firebase.auth().signOut();
+    var login = document.getElementById("login");
     but.addEventListener('click', e=> {
         firebase.auth().signOut();
         console.log("logged out");
         location.reload();
     });
+    
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            but.classList.remove('hide');
+            login.classList.add('hide');
+
+        } else {
+            but.classList.add('hide');
+            login.classList.remove('hide');
+        }
+    })
+
 }());

@@ -6,12 +6,37 @@
     <title> Studdy Buddy Login</title>
 
     <link rel="stylesheet" type="text/css" href="Style/Default.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
 
 
 </head>
 
 <body>
-    <h1> Welcome to Study Buddy</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="">StudyBuddy Welcome &nbsp; <span id="hello"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="">about</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hide" href="login.html" id="login">login/signup</a>
+                </li>
+    
+                <button class="nav-item hide nav-link" id="logMeOut">Logout</button>
+            </ul>
+        </div>
+    </nav>
 
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
@@ -24,12 +49,12 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
 
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    
+
 
 
     <script src="Scripts/firebase_config_team12.js"></script>
 
-    
+
 
     <script>
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
