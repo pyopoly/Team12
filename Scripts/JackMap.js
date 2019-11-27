@@ -116,63 +116,72 @@ var idListSE12 = [];
 
 function dropPin(){
     idList =[];
-db.collection("Groups").get().then(function(querySnapshot) {
-    //This querySnapshot.empty is a boolean that returns true is the collection is empty(no docs)
-    if (!querySnapshot.empty) {
-        //var size = querySnapshot.size;
-        
-        querySnapshot.forEach(function(doc) {
-            //console.log(doc.id, " => ", doc.data().course);
-            console.log(doc.data().location);
-            let location = doc.data().location;
-            if(location == "SE12") {
-                idListSE12.push(doc.id);
-            }
-            if(location == "SE2") {
-                idListSE2.push(doc.id);
-            }
-            idList.push(doc.id);
-        });
+    db.collection("Groups").get().then(function(querySnapshot) {
+        //This querySnapshot.empty is a boolean that returns true is the collection is empty(no docs)
+        if (!querySnapshot.empty) {
+            //var size = querySnapshot.size;
 
-        let se2Size = idListSE2.length;
-        let se12Size = idListSE12.length;
-        var g = "";
-        
-        console.log(se12Size);
-        for (let i = 0; i < se12Size; i++) {
-            db.collection('Groups').doc(idListSE12[i]).onSnapshot(function (snap) {
-                //console.log(snap.data().course);
-                var indexSe12 = idList.indexOf(idListSE12[i]);
-                g += createGroup(indexSe12, snap.data().course, snap.data().groupName);
-                //SE12
-                L.marker([49.25018, -123.001519], {icon: myIcon}).addTo(mymap)
-                    .bindPopup('<div class="iconPopup">' + g + '</div>');
+            querySnapshot.forEach(function(doc) {
+                //console.log(doc.id, " => ", doc.data().course);
+                console.log(doc.data().location);
+                let location = doc.data().location;
+                if(location == "SE12") {
+                    idListSE12.push(doc.id);
+                }
+                if(location == "SE2") {
+                    idListSE2.push(doc.id);
+                    console.log("SE2 pushed: " + doc.id);
+                }
+                idList.push(doc.id);
             });
+
+            let se2Size = idListSE2.length;
+            let se12Size = idListSE12.length;
+            var g = "";
+
+            console.log(se12Size);
+            function se12() {
+
+
+                for (let i = 0; i < se12Size; i++) {
+                    db.collection('Groups').doc(idListSE12[i]).onSnapshot(function (snap) {
+                        //console.log(snap.data().course);
+                        var indexSe12 = idList.indexOf(idListSE12[i]);
+                        g += createGroup(indexSe12, snap.data().course, snap.data().groupName);
+                        //SE12
+                        L.marker([49.25018, -123.001519], {icon: myIcon}).addTo(mymap)
+                            .bindPopup('<div class="iconPopup">' + g + '</div>');
+                    });
+                };
+
+            }
+            se12();
+            //console.log(idListSE2);
+            console.log(" The first g?" + g);
+            var x= "";
+            for (let i = 0; i < se2Size; i++) {
+                console.log(" The second g?" + g);
+                db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
+                    console.log("SE2 List: " + idListSE2);
+
+                    // console.log("what is g the third time " + g);
+                    var indexSe2 = idList.indexOf(idListSE2[i]);
+                    x += createGroup(indexSe2, snap.data().course, snap.data().groupName);
+                    //SE2
+                    console.log("what is g the fourth time" + g);
+                    L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
+                        .bindPopup('<div class="iconPopup">' + x + '</div>');
+                    //console.log(g);
+                });
+            };
+
+            //SE2
+            //L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
+            //    .bindPopup('<div class="iconPopup">' + group1 + group2 + group3 + '</div>')
+            //    .openPopup()
+            //;;
         };
-        //console.log(idListSE2);
-       // console.log(" The first g?" + g);
-        for (let i = 0; i < se2Size; i++) {
-       // console.log(" The second g?" + g);
-            db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
-                g = "";
-               // console.log("what is g the third time " + g);
-                var indexSe2 = idList.indexOf(idListSE2[i]);
-                g += createGroup(indexSe2, snap.data().course, snap.data().groupName);
-                //SE2
-               // console.log("what is g the fourth time" + g);
-                L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
-                    .bindPopup('<div class="iconPopup">' + g + '</div>');
-                //console.log(g);
-            });
-        };
-        
-        //SE2
-//L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
-//    .bindPopup('<div class="iconPopup">' + group1 + group2 + group3 + '</div>')
-//    .openPopup()
-//;;
-    };
-});
+    });
 };
 
 dropPin();
@@ -216,7 +225,7 @@ $(document).ready(function() {
                 document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
                 document.getElementById("time").innerHTML = snap.data().time;
             });
-            
+
             //////////////////
             //show the group details popup window
             $('.detailsOfGroups').show(200);
@@ -228,7 +237,7 @@ $(document).ready(function() {
             $('#mapid').css({
                 'z-index': '-2',
             });
-            
+
             //////////
             //remove groups when the confirm yes buttons is clicked
             $(document).on('click', '#yes', function() {
