@@ -48,6 +48,40 @@ HTML for creating a group form-->
   
 
 >>>>>>> dfa8c8c2f9b7c5f6160a4deae3547a978a409d0f
+
+
+<style>
+    
+        div.ul_container {
+            text-align: center;
+        }
+    
+        div.ul_container ul {
+            list-style-type: none;
+            display: inline-table;
+        }
+    
+            div.ul_container ul li.icon_groups {
+                display: inline-block;
+                margin: 30;
+            }
+         
+            div.ul_container ul li.social {
+                display: inline-block;
+                margin: 30;
+            }
+    
+            div.ul_container ul li.qna {
+                display: inline-block;
+                margin: 30;
+            }
+    
+            div.ul_container ul li.settings {
+                display: inline-block;
+                margin: 30;
+            }
+    </style>
+
     
 </head>
 
@@ -94,7 +128,20 @@ HTML for creating a group form-->
 
 <br/>
 </div>
-
+<footer id="common_footer">
+        <div class="ul_container">
+            <ul>
+                <li class="icon_groups"><a href="./map.html"><img src="./Images/Icon/map.png" 
+                    height="100" width="130"></img></a></li>
+                <li class="social"><a href="./social.html"><img src="./Images/Icon/people.png"
+                    height="100" width="130"></img></a></li>
+                <li class="qna"><a href="./qna.html"><img src="./Images/Icon/QnA.png"
+                    height="100" width="130"></img></a></li>
+                <li class="settings"><a href="./settings.html"><img src="./Images/Icon/setting.png"
+                    height="100" width="130"></img></a></li>
+            </ul>
+        </div>
+</footer>
 <!--create_a_group script, save data to our Firebase app when we
     click submit-->
     <script src="./Scripts/createAGroupTrialAbr.js"></script>
