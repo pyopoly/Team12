@@ -35,9 +35,19 @@ function showName() {
 
 
   
+/**
+ * Active listener that will check to see if a user is logged in. If logged in, different information will appear.
+ */
 (function () {
     var but = document.getElementById("logMeOut");
     var login = document.getElementById("login");
+    var createImg = document.getElementById("createImg");
+    var createTitle = document.getElementById("createTitle");
+    var mapImg = document.getElementById("mapImg");
+    var mapTitle = document.getElementById("mapTitle");
+
+
+
     but.addEventListener('click', e=> {
         firebase.auth().signOut();
         console.log("logged out");
@@ -48,6 +58,12 @@ function showName() {
         if (user) {
             but.classList.remove('hide');
             login.classList.add('hide');
+            createImg.setAttribute('href', "create_a_group.html");
+            createTitle.setAttribute('href', "create_a_group.html");
+            mapImg.setAttribute('href', "map.html");
+            mapTitle.setAttribute('href', "map.html");
+
+
 
         } else {
             but.classList.add('hide');
