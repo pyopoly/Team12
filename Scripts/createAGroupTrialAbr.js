@@ -22,6 +22,7 @@ $(document).ready(function() {
         details: groupForm.groupDetailsA.value,
         
       })
+      window.location.href = 'https://studybuddy-ce7e9.firebaseapp.com/map.html';
     });
 });
 
