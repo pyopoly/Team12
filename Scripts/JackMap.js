@@ -53,7 +53,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 var popup = L.popup();
 
 var myIcon = L.icon({
-    iconUrl: 'images/icon/orange icon.png',
+    iconUrl: 'Images/Icon/orange icon.png',
     iconSize:     [40,45 ], // size of the icon
     iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -60] // point from which the popup should open relative to the iconAnchor
@@ -63,7 +63,7 @@ var myIcon = L.icon({
 ////////////////////////////////////////////////////////////////////////////
 //Functions to create study group strings
 //////////////////////////////////////////////////////////////////////////
-var join = '<img id =join src=images/icon/join.png float=right>';
+var join = '<img id =join src=Images/Icon/join.png float=right>';
 
 //function I made
 function courseName(id, name) {
@@ -77,7 +77,7 @@ function groupName(id, name) {
 }
 
 function createGroup(groupNumber, course, nameOfGroup) {
-    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) + '<img id =join' +groupNumber + ' src=images/icon/join.png float=right>' + '</div>';
+    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) + '<img id =join' +groupNumber + ' src=Images/Icon/join.png float=right>' + '</div>';
     return group;
 }
 
@@ -140,7 +140,7 @@ function dropPin(){
     idList =[];
     idListSE12 = [];
     idListSE2 = [];
-    g ="";
+    g = "";
     x = "";
     db.collection("Groups").get().then(function(querySnapshot) {
         //////This querySnapshot.empty is a boolean that returns true is the collection is empty(no docs)

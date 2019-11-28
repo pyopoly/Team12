@@ -1,10 +1,19 @@
+div.back_btn a img {
+    height: 60px;
+    width: 60px;
+}
+
+div.back_btn  {
+    font-size: 50px;
+}
+
 div.page_container {
     background-color: cornflowerblue;
 }
 
-div.form_container {
+/*div.form_container {
     color: white;
-}
+}*/
 
 div.form_container input {
     background-color: lightseagreen;
