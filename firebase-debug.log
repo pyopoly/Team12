@@ -1,24 +1,24 @@
-[debug] [2019-11-27T21:13:18.444Z] ----------------------------------------------------------------------
-[debug] [2019-11-27T21:13:18.452Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jack's PC Air\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-11-27T21:13:18.453Z] CLI Version:   7.8.1
-[debug] [2019-11-27T21:13:18.454Z] Platform:      win32
-[debug] [2019-11-27T21:13:18.454Z] Node Version:  v12.13.0
-[debug] [2019-11-27T21:13:18.461Z] Time:          Wed Nov 27 2019 13:13:18 GMT-0800 (Pacific Standard Time)
-[debug] [2019-11-27T21:13:18.461Z] ----------------------------------------------------------------------
-[debug] [2019-11-27T21:13:18.462Z] 
-[debug] [2019-11-27T21:13:18.493Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-11-27T21:13:18.496Z] > authorizing via signed-in user
-[debug] [2019-11-27T21:13:18.496Z] [iam] checking project studybuddy-ce7e9 for permissions ["firebase.projects.get"]
-[debug] [2019-11-27T21:13:18.503Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/studybuddy-ce7e9:testIamPermissions  
+[debug] [2019-11-28T00:43:01.291Z] ----------------------------------------------------------------------
+[debug] [2019-11-28T00:43:01.301Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jack's PC Air\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-11-28T00:43:01.301Z] CLI Version:   7.8.1
+[debug] [2019-11-28T00:43:01.301Z] Platform:      win32
+[debug] [2019-11-28T00:43:01.301Z] Node Version:  v12.13.0
+[debug] [2019-11-28T00:43:01.308Z] Time:          Wed Nov 27 2019 16:43:01 GMT-0800 (Pacific Standard Time)
+[debug] [2019-11-28T00:43:01.308Z] ----------------------------------------------------------------------
+[debug] [2019-11-28T00:43:01.309Z] 
+[debug] [2019-11-28T00:43:01.345Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-28T00:43:01.348Z] > authorizing via signed-in user
+[debug] [2019-11-28T00:43:01.348Z] [iam] checking project studybuddy-ce7e9 for permissions ["firebase.projects.get"]
+[debug] [2019-11-28T00:43:01.356Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/studybuddy-ce7e9:testIamPermissions  
 
-[debug] [2019-11-27T21:13:18.711Z] <<< HTTP RESPONSE 200
-[debug] [2019-11-27T21:13:18.717Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/studybuddy-ce7e9  
+[debug] [2019-11-28T00:43:01.736Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T00:43:01.743Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/studybuddy-ce7e9  
  
-[debug] [2019-11-27T21:13:18.859Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T00:43:01.918Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\Jack's PC Air\Desktop\projects\Team12'...
 [info] 
-[debug] [2019-11-27T21:13:18.876Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/studybuddy-ce7e9/webApps/-/config  
+[debug] [2019-11-28T00:43:01.949Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/studybuddy-ce7e9/webApps/-/config  
  
-[debug] [2019-11-27T21:13:19.276Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T00:43:02.375Z] <<< HTTP RESPONSE 200
 [info] +  hosting: Local server: http://localhost:5000
