@@ -26,23 +26,10 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
 
-
-   
-
-
-
-    <!-- STYLING-->
-
-
-
 </head>
 
 
 <body>
-
-    <!-------------------------------------->
-    <!-- The following is HTML for layout -->
-    <!-------------------------------------->
 
     <!-- Header Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -65,7 +52,6 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
             </ul>
         </div>
     </nav>
-
 
     <!-- Title Centred Landing Picture -->
 
@@ -124,24 +110,23 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
 
 
     <!-- Where the common footer goes -->
-    <OBJECT width=100% data="common_footer.html">
+    <OBJECT width=100% data="footer_common.html">
 
     </OBJECT>
 
     <!------------------------------------------------------------------------------->
     <!-- Javascript goes here.                                                     -->
     <!------------------------------------------------------------------------------->
+    <script src="Scripts/firebase_config_team12.js"></script>
     <script src="Scripts/Users.js"></script>
-
-
-
 
     <script>
         createUser();
         showName();
     </script>
+
  <!-- This is the configuration that connects my web files to my firebase project -->
-    <script src="Scripts/firebase_config_team12.js"></script>
+    
 
 </body>
 
