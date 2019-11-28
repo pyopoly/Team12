@@ -1,3 +1,12 @@
+div.back_btn a img {
+    height: 60px;
+    width: 60px;
+}
+
+div.back_btn  {
+    font-size: 50px;
+}
+
 div.page_container {
     background-color: cornflowerblue;
 }
