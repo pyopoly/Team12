@@ -60,6 +60,9 @@ var myIcon = L.icon({
 });
 
 
+////////////////////////////////////////////////////////////////////////////
+//Functions to create study group strings
+//////////////////////////////////////////////////////////////////////////
 var join = '<img id =join src=images/icon/join.png float=right>';
 
 //function I made
@@ -89,8 +92,10 @@ var group7 = createGroup(6, 'comp1113', "Boolean Algebra");
 var group8 = createGroup(7, 'comm1116', "Presentation");
 
 
-
+////////////////////////////////////////////////////////////////////////////
+//
 //------------------------------The pins on the map--------------------------
+//////////////////////////////////////////////////////////////////////////
 //SE2
 //L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
 //    .bindPopup('<div class="iconPopup">' + group1 + group2 + group3 + '</div>')
@@ -105,21 +110,32 @@ var group8 = createGroup(7, 'comm1116', "Presentation");
 
 
 
+
+
 ////////////////////////////////////////////////////////////////////////////
-//This checks if there are docs in Groups collection, then drops a pin at SE12
+//Variables
 //////////////////////////////////////////////////////////////////////////
-
-
-//This is the arrayList for group ids
+// objects representing pins
 var markerSE12 = {};
 var markerSE2 = {};
+//This is the arrayList for group ids
 var idList = [];
+//list for ids in SE2
 var idListSE2 = [];
+//list for ids in SE12
 var idListSE12 = [];
+//variable for groups
 var g = "";
-var x= "";
-function dropPin(){
+var x = "";
 
+////////////////////////////////////////////////////////////////////////////
+//This checks if there are docs in Groups collection for SE2 or SE12,
+//then drops pins at SE12 or SE2 accordingly
+//////////////////////////////////////////////////////////////////////////
+
+//drop pin function
+dropPin();
+function dropPin(){
     //Refreshes all variables so no repeating divs will appear.
     idList =[];
     idListSE12 = [];
@@ -127,7 +143,7 @@ function dropPin(){
     g ="";
     x = "";
     db.collection("Groups").get().then(function(querySnapshot) {
-        //This querySnapshot.empty is a boolean that returns true is the collection is empty(no docs)
+        //////This querySnapshot.empty is a boolean that returns true is the collection is empty(no docs)
         if (!querySnapshot.empty) {
             //var size = querySnapshot.size;
 
@@ -148,23 +164,18 @@ function dropPin(){
             let se2Size = idListSE2.length;
             let se12Size = idListSE12.length;
 
-
-            //console.log(se12Size);
+            ////////////////////SE12
             function se12() {
                 for (let i = 0; i < se12Size; i++) {
                     db.collection('Groups').doc(idListSE12[i]).onSnapshot(function (snap) {
                         //console.log(snap.data().course);
                         var indexSe12 = idList.indexOf(idListSE12[i]);
                         g += createGroup(indexSe12, snap.data().course, snap.data().groupName);
-                        //SE12
-
                         if(i == se12Size -1) {
                             markerSE12 = new L.marker([49.25018, -123.001519], {icon: myIcon}).addTo(mymap)
                                 .bindPopup('<div class="iconPopup">' + g + '</div>');
                             mymap.addLayer(markerSE12);
                         }
-
-
                     });
                 };
             }
@@ -172,7 +183,6 @@ function dropPin(){
             //console.log(idListSE2);
             function se2() {
                 for (let i = 0; i < se2Size; i++) {
-
                     // console.log(" The second x?" + x);
                     db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
                         //console.log("SE2 List: " + idListSE2);
@@ -186,29 +196,24 @@ function dropPin(){
                                 .bindPopup('<div class="iconPopup">' + x + '</div>');
                             mymap.addLayer(markerSE2);
                         }
-
-                        //                        mymap.removeLayer(markerSE2);
-                        //console.log(markerSE2);
                     });
                 };
             };
-            //se2 function is run
+            //se2 function
             se2();
-            //se12 function is run
+            //se12 function
             se12();
         };
     });
 };
 
-//drop pin function is run
-dropPin();
 
-
+////////////////////////////////////////////////////////////////////////////
+//remove all pins
+//////////////////////////////////////////////////////////////////////////
 function remove() {
     mymap.removeLayer(markerSE12);
     mymap.removeLayer(markerSE2);
-
-
 }
 
 
@@ -278,7 +283,6 @@ $(document).on('click', 'img[id^=join]', function(){
 //remove groups when the confirm yes buttons is clicked
 function deletion() {
     let y = d;
-
     console.log("thi is the currentd --->" +y);
     console.log(idList[y]);
     db.collection("Groups").doc(idList[y]).delete().then(function() {
@@ -286,19 +290,62 @@ function deletion() {
         console.log("Document successfully deleted!");
         closeAll();
         $("#group" + y).remove();
-
         remove();
         dropPin();
-
     }).catch(function(error) {
         console.error("Error removing document: ", error);
-
         remove();
         dropPin();
     });
-
-
 }
+
+////////////////////////////////////////////////////////////////////////
+///This shows the delete groups confirm popup window
+///////////////////////////////////////////////////////////////////////
+$(document).ready(function() {
+    $(document).on('click', '#joinButton', function(){
+        $('#confirm').show(200);
+        $('#confirm').css({
+            'position' : 'absolute'
+        });
+        $('#mapid').css({
+            'z-index': '-2',
+        });
+    })
+})
+
+
+////////////////////////////////////////////////////////////////////////////
+//This is the function to close popup windows
+//////////////////////////////////////////////////////////////////////////
+function closeAll(){
+    $('.detailsOfGroups').hide(200);
+    $('#confirm').hide(200);
+    $('#mapid').css({
+        'z-index': '2'
+    });
+};
+
+////////////////////////////////////////////////////////////////////////////
+//event listeners
+//////////////////////////////////////////////////////////////////////////
+$(document).on('click', '#close', closeAll);
+$(document).on('click', '#no', closeAll);
+$(document).on('click', '#yes', deletion);
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+//END OF DOCUMENT
+//////////////////////////////////////////////////////////////////////////
+
+
+
 /////////////////////////////////////////////
 //remove groups when the confirm yes buttons is clicked
 //function deletion(number) {
@@ -328,36 +375,3 @@ function deletion() {
 //
 //    });
 //}
-
-////////////////////////////////////////////////////////////////////////
-///This shows the delete groups confirm popup window
-///////////////////////////////////////////////////////////////////////
-$(document).ready(function() {
-    $(document).on('click', '#joinButton', function(){
-        $('#confirm').show(200);
-        $('#confirm').css({
-            'position' : 'absolute'
-        });
-        $('#mapid').css({
-            'z-index': '-2',
-        });
-    })
-})
-
-
-
-
-////////////////////////////////////////////////////////////////////////////
-//This is the function to close popup windows
-//////////////////////////////////////////////////////////////////////////
-function closeAll(){
-    $('.detailsOfGroups').hide(200);
-    $('#confirm').hide(200);
-    $('#mapid').css({
-        'z-index': '2'
-    });
-};
-
-$(document).on('click', '#close', closeAll);
-$(document).on('click', '#no', closeAll);
-$(document).on('click', '#yes', deletion);
