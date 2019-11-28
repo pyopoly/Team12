@@ -48,7 +48,7 @@ function showName() {
 
 
 
-    but.addEventListener('click', e=> {
+    but.addEventListener('click', e => {
         firebase.auth().signOut();
         console.log("logged out");
         location.reload();

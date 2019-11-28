@@ -2,9 +2,9 @@ div.page_container {
     background-color: cornflowerblue;
 }
 
-div.form_container {
+/*div.form_container {
     color: white;
-}
+}*/
 
 div.form_container input {
     background-color: lightseagreen;
