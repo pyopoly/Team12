@@ -39,6 +39,40 @@
 
 
         <style>
+
+            /*Styling for footer*/
+
+            div.ul_container {
+                text-align: center;
+            }
+
+            div.ul_container ul {
+                list-style-type: none;
+                display: inline-table;
+                padding: 0;
+                margin-left: -4%;
+            }
+
+            .icon_groups, .social, .qna, .createGroup {
+                display: inline-block;
+                padding: 8px;
+                margin-top: 5px;
+               
+            }
+            
+            .icon {
+                height:40px;
+            }
+
+            .social {
+                margin-left: 15px;
+            }
+            
+            .qna {
+                margin-left: 15px;
+            }
+
+
         </style>
 
 
@@ -64,55 +98,55 @@
     <body>
 
         <Script>
-//            var citiesRef = db.collection("cities123");
-//
-//            citiesRef.doc("SFssss").set({
-//                name: "San Francisco", state: "CA", country: "USA",
-//                capital: false, population: 860000,
-//                regions: ["west_coast", "norcal"] });
-//            citiesRef.doc("LA").set({
-//                name: "Los Angeles", state: "CA", country: "USA",
-//                capital: false, population: 3900000,
-//                regions: ["west_coast", "socal"] });
-//            citiesRef.doc("DC").set({
-//                name: "Washington, D.C.", state: null, country: "USA",
-//                capital: true, population: 680000,
-//                regions: ["east_coast"] });
-//            citiesRef.doc("TOK").set({
-//                name: "Tokyo", state: null, country: "Japan",
-//                capital: true, population: 9000000,
-//                regions: ["kanto", "honshu"] });
-//            citiesRef.doc("BJ").set({
-//                name: "Beijing", state: null, country: "China",
-//                capital: true, population: 21500000,
-//                regions: ["jingjinji", "hebei"] });
-//            citiesRef.doc("BJqwdw").set({
-//                name: "Beijing", state: null, country: "China",
-//                capital: true, population: 21500000,
-//                regions: ["jingjinji", "hebei"] });
+            //            var citiesRef = db.collection("cities123");
+            //
+            //            citiesRef.doc("SFssss").set({
+            //                name: "San Francisco", state: "CA", country: "USA",
+            //                capital: false, population: 860000,
+            //                regions: ["west_coast", "norcal"] });
+            //            citiesRef.doc("LA").set({
+            //                name: "Los Angeles", state: "CA", country: "USA",
+            //                capital: false, population: 3900000,
+            //                regions: ["west_coast", "socal"] });
+            //            citiesRef.doc("DC").set({
+            //                name: "Washington, D.C.", state: null, country: "USA",
+            //                capital: true, population: 680000,
+            //                regions: ["east_coast"] });
+            //            citiesRef.doc("TOK").set({
+            //                name: "Tokyo", state: null, country: "Japan",
+            //                capital: true, population: 9000000,
+            //                regions: ["kanto", "honshu"] });
+            //            citiesRef.doc("BJ").set({
+            //                name: "Beijing", state: null, country: "China",
+            //                capital: true, population: 21500000,
+            //                regions: ["jingjinji", "hebei"] });
+            //            citiesRef.doc("BJqwdw").set({
+            //                name: "Beijing", state: null, country: "China",
+            //                capital: true, population: 21500000,
+            //                regions: ["jingjinji", "hebei"] });
 
         </Script>
         <div id='content'>
             <div id="mapid"></div>
-            
+
             <div id="confirm">
-            Do you want to remove this group?
-                
+                Do you want to remove this group?
+
                 <div><img id ="yes" src="Images/Icon/yes.png"/><img id="no" src="Images/Icon/no.png"/></div>
             </div>
 
             <div class="detailsOfGroups">
                 <div class="heading">
                     <div class="innerHeading">
-                    <div class="info1"></div>
-                    <span class="info2"></span>
-                    <span class="info3"></span>
-                    
+                        <div class="info1"></div>
+                        <span class="info2"></span>
+                        <span class="info3"></span>
+
                     </div>
                     <div class="innerHeading2">
-                    <span class="createBy">Created by: </span>
-                    <span class="author"></span>
-                        </div>
+                        <span class="createBy">Created by: </span>
+                        <span class="author"></span>
+                    </div>
                     <span class="createdTime">Time Created: </span>
                     <span id="time">10pm</span>
                 </div>
@@ -137,10 +171,10 @@
             console.log(doc.data()); //each document's data
             });
             });
-            
+
             }
-            
-            
+
+
             displayCities();
             */
         </script>
@@ -153,5 +187,36 @@
         <link rel="stylesheet" href="Style/JackStyle.css">
         <script src="Scripts/JackMap.js"></script>
         <script src="Scripts/JackMapGroup.js"></script>
+
+        <!-- HTML for Footer -->
+        <footer id="common_footer">
+            <div class="ul_container">
+                <ul>
+                    <li class="createGroup">
+                        <a href="./create_a_group.html" onmouseover="this.style.cursor='pointer';">
+                            <img class="icon" src="./Images/Icon/add.png">
+                        </a>
+                    </li>
+                    <li class="icon_groups">
+                        <a href="./map.html" onmouseover="this.style.cursor='pointer';">
+                            <img class="icon" src="./Images/Icon/map.png"  >
+                        </a>
+                    </li>
+                    <li class="social">
+                        <a href="./social.html" onmouseover="this.style.cursor='pointer';">
+                            <img class="icon" src="./Images/Icon/people.png" >
+                        </a>
+                    </li>
+                    <li class="qna">
+                        <a href="./qna.html" onmouseover="this.style.cursor='pointer';">
+                            <img class="icon" src="./Images/Icon/QnA.png" >
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </footer>
+
+
     </body>
 </html>

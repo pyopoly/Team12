@@ -1,0 +1,100 @@
+div.page_container {
+    background-color: cornflowerblue;
+}
+
+div.form_container {
+    color: white;
+}
+
+div.form_container input {
+    background-color: lightseagreen;
+}
+::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+div.form_container div.groupNameDiv {
+    padding-top: 80px;
+    padding-left: 50px;
+
+    font-size: 40px;
+}
+div.form_container div.groupNameDiv input {
+    font-size: 40px;
+}
+
+div.form_container div.groupCourseDiv {
+    padding-left: 50px;
+
+    font-size: 40px;
+}
+div.form_container div.groupCourseDiv input {
+    height: 20px;
+    width: 20px;
+}
+
+div.form_container div.groupLocationDiv {
+    padding-left: 50px;
+
+    font-size: 40px;
+}
+div.form_container div.groupLocationDiv input {
+    height: 20px;
+    width: 20px;
+}
+
+div.form_container div.groupDetailsDiv {
+    padding-left: 50px;
+
+    font-size: 40px;
+}
+div.form_container div.groupDetailsDiv input {
+    font-size: 40px;
+    
+
+    height: 250px;
+    width: 850px;
+}
+
+button {
+    margin-left: 50px;
+    font-size: 40px;
+    margin-bottom: 50px;
+
+    background-color: lightseagreen;
+    color: white;
+
+    
+}
+
+div.ul_container {
+    background-color: lightseagreen;
+    text-align: center;
+}
+
+div.ul_container ul {
+    list-style-type: none;
+    display: inline-table;
+}
+
+    div.ul_container ul li.icon_groups {
+        display: inline-block;
+        margin: 40px;
+    }
+ 
+    div.ul_container ul li.social {
+        display: inline-block;
+        margin: 40px;
+    }
+
+    div.ul_container ul li.qna {
+        display: inline-block;
+        margin: 40px;
+    }
+
+    div.ul_container ul li.settings {
+        display: inline-block;
+        margin: 40px;
+    }
+
