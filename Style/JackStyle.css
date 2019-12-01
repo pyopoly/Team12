@@ -25,7 +25,6 @@ div.leaflet-control-attribution.leaflet-control {
 }
 
 
-
 /*--------the popup when icon is clicked------*/
 
 /*the rows in the icon popup*/
@@ -46,7 +45,6 @@ img[src$='join.png'] {
     cursor: pointer;
 
 }
-
 
 span[id^=course] {
     padding-right: 0%;
@@ -85,7 +83,6 @@ span[id^=groupName] {
     overflow: hidden;
 }
 
-
 #yes, #no, #joinButton{
     height:20px;
     cursor: pointer;
@@ -102,13 +99,6 @@ span[id^=groupName] {
     cursor: pointer;
 }
 
-span.info3 {
-
-}
-
-.author {
-}
-
 .details {
     height: 100%;
     border: 2px solid grey;
@@ -118,3 +108,39 @@ span.info3 {
 .textDetails {
     height:80%
 }
+
+
+
+
+/*Styling for footer*/
+
+div.ul_container {
+    text-align: center;
+}
+
+div.ul_container ul {
+    list-style-type: none;
+    display: inline-table;
+    padding: 0;
+    margin-left: -4%;
+}
+
+.icon_groups, .social, .qna, .createGroup {
+    display: inline-block;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.icon {
+    height:40px;
+}
+
+.social {
+    margin-left: 15px;
+}
+
+.qna {
+    margin-left: 15px;
+}
+
+
