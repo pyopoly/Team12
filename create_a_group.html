@@ -28,6 +28,24 @@ HTML for creating a group form-->
 
     <script src="/Scripts/firebase_config_team12.js"></script>
 
+            <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBdBMvmyQQvDUE7yQK8kypXmL8Xko7SJhw",
+                authDomain: "studybuddy-ce7e9.firebaseapp.com",
+                databaseURL: "https://studybuddy-ce7e9.firebaseio.com",
+                projectId: "studybuddy-ce7e9",
+                storageBucket: "studybuddy-ce7e9.appspot.com",
+                messagingSenderId: "288586368350",
+                appId: "1:288586368350:web:c13d8a08c9249b15cbbbcf",
+                measurementId: "G-VYXB59FGNZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            var db = firebase.firestore();
+        </script>
+    
 </head>
 
 <body>
@@ -75,7 +93,8 @@ HTML for creating a group form-->
             <br />
         </fieldset>
 
-        <button type="submit" id="create_group_btn">Create Group</button>
+        <button type="submit" id="create_group_btn">Create Group 
+        </button>
 
         </form>
 

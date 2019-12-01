@@ -5,7 +5,7 @@ generate time stamp to put in "Time Created" */
 
 
 $(document).ready(function() {
-  
+  console.log("hello");
     
     /*Date object to add to a data field in the future*/
     var currentDateandTime = new Date();
@@ -13,8 +13,10 @@ $(document).ready(function() {
     var groupForm =  document.querySelector('#createAGroupForm');
   
     groupForm.addEventListener('submit', (e) => {
+        
+        console.log(e);
       e.preventDefault();
-      
+      console.log("hre");
       db.collection('Groups').add({
         groupName: groupForm.groupNameA.value,
         course: groupForm.courseSelectA.value,
