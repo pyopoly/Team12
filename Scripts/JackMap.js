@@ -248,7 +248,8 @@ $(document).on('click', 'img[id^=join]', function(){
         console.log("what is in the list: " + idList);
         console.log("What is the id---->" + idList[d]);
         console.log(d);
-
+//localStorage.setITem("key", d);
+//        d = localStorage////////////////////////////////////////////////////////
         db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
             document.getElementById("course" + d).innerHTML = snap.data().course;
             $('.info3').html("<br>" + courseName(d, snap.data().course));
