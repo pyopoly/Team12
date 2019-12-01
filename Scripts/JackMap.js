@@ -237,9 +237,8 @@ function onMapClick(e) {
 
 ///////this happens when the first join button is clicked.
 var d;
-$(document).on('click', 'img[id^=join]', function(){
+$(document).on('click', 'img[id^=join]', function(event){
 
-    $('img[id^=join]').click(function(event) {
         //console.log("what is it the event?" +event);
         //console.log($(event.target).attr("id"));
 
@@ -276,7 +275,7 @@ $(document).on('click', 'img[id^=join]', function(){
         console.log(d);
 
     });
-});
+
 
 
 
@@ -284,7 +283,7 @@ $(document).on('click', 'img[id^=join]', function(){
 //remove groups when the confirm yes buttons is clicked
 function deletion() {
     let y = d;
-    console.log("thi is the currentd --->" +y);
+    console.log("thi is the current i d --->" +y);
     console.log(idList[y]);
     db.collection("Groups").doc(idList[y]).delete().then(function() {
         console.log(idList[y]);
