@@ -48,7 +48,7 @@ var myIcon = L.icon({
 ////////////////////////////////////////////////////////////////////////////
 //Functions to create study group strings
 //////////////////////////////////////////////////////////////////////////
-var join = '<img id =join src=Images/Icon/join.png float=right>';
+var join = '<img id =join src='Images/Icon/join.png' float=right>';
 
 //function I made
 function courseName(id, name) {
