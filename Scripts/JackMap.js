@@ -48,7 +48,7 @@ var myIcon = L.icon({
 ////////////////////////////////////////////////////////////////////////////
 //Functions to create study group strings
 //////////////////////////////////////////////////////////////////////////
-var join = '<img id =join src=Images/Icon/Join.png float=right>';
+// var join = '<img id =join src=Images/Icon/Join.png float=right>';
 
 //function I made
 function courseName(id, name) {
@@ -62,7 +62,8 @@ function groupName(id, name) {
 }
 
 function createGroup(groupNumber, course, nameOfGroup) {
-    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) + '<img id =join' +groupNumber + ' src=Images/Icon/join.png float=right>' + '</div>';
+    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) 
+    + '<img id =join' +groupNumber + ' src=Images/Icon/Join.png float=right>' + '</div>';
     return group;
 }
 
@@ -143,13 +144,13 @@ function dropPin(){
                 idList.push(doc.id);
             });
 
-            let se2Size = idListSE2.length;
-            let se12Size = idListSE12.length;
+            
 
             ////////////////////////////////////////
             ////There are two functions inside the drop pin function that regulate the two pins
             ////This one is for SE12
-            /////////////////////////////////////////
+            /////////////////////////////////////////         
+            let se12Size = idListSE12.length;
             function se12() {
                 for (let i = 0; i < se12Size; i++) {
                     db.collection('Groups').doc(idListSE12[i]).onSnapshot(function (snap) {
@@ -168,6 +169,7 @@ function dropPin(){
             ////There are two functions inside the drop pin function that regulate the two pins
             ////This one is for SE2
             /////////////////////////////////////////
+            let se2Size = idListSE2.length;
             function se2() {
                 for (let i = 0; i < se2Size; i++) {
                     db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
