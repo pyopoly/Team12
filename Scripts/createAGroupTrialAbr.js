@@ -23,8 +23,11 @@ $(document).ready(function() {
         location: groupForm.groupLocationA.value,
         details: groupForm.groupDetailsA.value,
         
+      }).then(function() {
+
+        window.location.replace("map.html");
+
       })
-      window.location.replace("https://studybuddy-ce7e9.firebaseapp.com/map.html");
     });
 });
 
