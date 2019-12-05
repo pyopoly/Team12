@@ -1,164 +1,167 @@
 <!DOCTYPE html>\
 <html lang="en">
-    <head>
-        <title>Map</title>
-        <meta charset="utf-5"/>
+
+<head>
+    <title>Map</title>
+    <meta charset="utf-5" />
 
 
-        <!------------------------------------------------------------------------------>
-        <!-- Bootstrap for Mobile-first                                               -->
-        <!------------------------------------------------------------------------------>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css">
+    <!------------------------------------------------------------------------------>
+    <!-- Bootstrap for Mobile-first                                               -->
+    <!------------------------------------------------------------------------------>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css">
 
-        <!------------------------------------------------------------------------------>
-        <!-- Add Firebase products that you want to use                               -->
-        <!------------------------------------------------------------------------------>
-        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
-        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <!------------------------------------------------------------------------------>
+    <!-- Add Firebase products that you want to use                               -->
+    <!------------------------------------------------------------------------------>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
-        <!------------------------------------------------------------------------------>
-        <!-- Optional styles and scripts of your own                                  -->
-        <!------------------------------------------------------------------------------>
-
-
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-              integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-              crossorigin=""/>
-
-        <!-- Make sure you put this AFTER Leaflet's CSS -->
-        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-                integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-                crossorigin=""></script>
+    <!------------------------------------------------------------------------------>
+    <!-- Optional styles and scripts of your own                                  -->
+    <!------------------------------------------------------------------------------>
 
 
-        <style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
 
-        </style>
-
-
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyBdBMvmyQQvDUE7yQK8kypXmL8Xko7SJhw",
-                authDomain: "studybuddy-ce7e9.firebaseapp.com",
-                databaseURL: "https://studybuddy-ce7e9.firebaseio.com",
-                projectId: "studybuddy-ce7e9",
-                storageBucket: "studybuddy-ce7e9.appspot.com",
-                messagingSenderId: "288586368350",
-                appId: "1:288586368350:web:c13d8a08c9249b15cbbbcf",
-                measurementId: "G-VYXB59FGNZ"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-
-            var db = firebase.firestore();
-        </script>
-
-    </head>
-    <body>
-
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="">StudyBuddy&nbsp; <span id="hello"></span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="">about</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hide" href="login.html" id="login">login/signup</a>
-                    </li>
-    
-                    <button type="button" class="btn btn-primary nav-item hide nav-link" id="logMeOut">Logout</button>
-                </ul>
-            </div>
-        </nav>
-    
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
 
 
-        <div id='content'>
-            <div id="mapid"></div>
+    <style>
 
-            <div id="confirm">
-                Do you want to remove this group?
+    </style>
 
-                <div><img id ="yes" src="Images/Icon/yes.png"/><img id="no" src="Images/Icon/no.png"/></div>
-            </div>
 
-            <div class="detailsOfGroups">
-                <div class="heading">
-                    <div class="innerHeading">
-                        <div class="info1"></div>
-                        <span class="info2"></span>
-                        <span class="info3"></span>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBdBMvmyQQvDUE7yQK8kypXmL8Xko7SJhw",
+            authDomain: "studybuddy-ce7e9.firebaseapp.com",
+            databaseURL: "https://studybuddy-ce7e9.firebaseio.com",
+            projectId: "studybuddy-ce7e9",
+            storageBucket: "studybuddy-ce7e9.appspot.com",
+            messagingSenderId: "288586368350",
+            appId: "1:288586368350:web:c13d8a08c9249b15cbbbcf",
+            measurementId: "G-VYXB59FGNZ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-                    </div>
-                    <div class="innerHeading2">
-                        <span class="createBy">Created by: </span>
-                        <span class="author"></span>
-                    </div>
-                    <span class="createdTime">Time Created: </span>
-                    <span id="time">10pm</span>
-                </div>
-                <div class="details">
-                    <div class='textDetails'></div>
-                    <div id='joinButton'><img src='Images/Icon/delete.png' width='40px'></div>
-                </div>
-            </div>
+        var db = firebase.firestore();
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="">StudyBuddy&nbsp; <span id="hello"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="">about</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hide" href="login.html" id="login">login/signup</a>
+                </li>
+
+                <button type="button" class="btn btn-primary nav-item hide nav-link" id="logMeOut">Logout</button>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div id='content'>
+        <div id="mapid"></div>
+
+        <div id="confirm">
         </div>
 
+        <div class="detailsOfGroups">
+            <div class="heading">
+                <div class="innerHeading">
+                    <div class="info1"></div>
+                    <span class="info2"></span>
+                    <span class="info3"></span>
 
-        <script>
-        </script>
-
-
-        <!------------------------------------------------------------------------------>
-        <!-- Jack's CSS style and java Script                                         -->
-        <!------------------------------------------------------------------------------>
-        <link rel="stylesheet" href="Style/JackStyle.css">
-        <script src="Scripts/JackMap.js"></script>
-        <script src="Scripts/JackMapGroup.js"></script>
-
-        <!-- HTML for Footer -->
-        <footer id="common_footer">
-            <div class="ul_container">
-                <ul>
-                    <li class="createGroup">
-                        <a href="./create_a_group.html" onmouseover="this.style.cursor='pointer';">
-                            <img class="icon" src="./Images/Icon/add.png">
-                        </a>
-                    </li>
-                    <li class="icon_groups">
-                        <a href="./map.html" onmouseover="this.style.cursor='pointer';">
-                            <img class="icon" src="./Images/Icon/map.png"  >
-                        </a>
-                    </li>
-                    <li class="social">
-                        <a href="./social.html" onmouseover="this.style.cursor='pointer';">
-                            <img class="icon" src="./Images/Icon/people.png" >
-                        </a>
-                    </li>
-                    <li class="qna">
-                        <a href="./qna.html" onmouseover="this.style.cursor='pointer';">
-                            <img class="icon" src="./Images/Icon/QnA.png" >
-                        </a>
-                    </li>
-                    
-                </ul>
+                </div>
+                <div class="innerHeading2">
+                    <span class="createBy">Created by: </span>
+                    <span class="author"></span>
+                </div>
+                <span class="createdTime">Time Created: </span>
+                <span id="time">10pm</span>
             </div>
-        </footer>
+            <div class="details">
+                <div class='textDetails'></div>
+                <div id='joinButton'></div>
+            </div>
+        </div>
+    </div>
 
 
-    </body>
+    <script>
+        $('#confirm').html('Do you want to remove this group?<div><img id ="yes"' +
+            'src="Images/Icon/yes.png"/><img id="no" src="Images/Icon/no.png"/></div>');
+        $('#joinButton').html("<img src='Images/Icon/delete.png' width='40px'>");
+    </script>
+
+
+    <!------------------------------------------------------------------------------>
+    <!-- Jack's CSS style and java Script                                         -->
+    <!------------------------------------------------------------------------------>
+    <link rel="stylesheet" href="Style/JackStyle.css">
+    <script src="Scripts/JackMap.js"></script>
+    <script src="Scripts/JackMapGroup.js"></script>
+
+    <!-- HTML for Footer -->
+    <footer id="common_footer">
+        <div class="ul_container">
+            <ul>
+                <li class="createGroup">
+                    <a href="./create_a_group.html" onmouseover="this.style.cursor='pointer';">
+                        <img class="icon" src="./Images/Icon/add.png">
+                    </a>
+                </li>
+                <li class="icon_groups">
+                    <a href="./map.html" onmouseover="this.style.cursor='pointer';">
+                        <img class="icon" src="./Images/Icon/map.png">
+                    </a>
+                </li>
+                <li class="social">
+                    <a href="./social.html" onmouseover="this.style.cursor='pointer';">
+                        <img class="icon" src="./Images/Icon/people.png">
+                    </a>
+                </li>
+                <li class="qna">
+                    <a href="./qna.html" onmouseover="this.style.cursor='pointer';">
+                        <img class="icon" src="./Images/Icon/QnA.png">
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </footer>
+
+
+</body>
+
 </html>
