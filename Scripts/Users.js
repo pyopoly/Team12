@@ -64,8 +64,6 @@ function showName() {
             mapImg.setAttribute('href', "map.html");
             mapTitle.setAttribute('href', "map.html");
 
-
-
         } else {
             logout.classList.add('hide');
             login.classList.remove('hide');
