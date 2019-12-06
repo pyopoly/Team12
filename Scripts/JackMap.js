@@ -118,6 +118,10 @@ var markerSE2 = {};
 var g = "";
 var x = "";
 
+console.log("this");
+console.log(
+db.collection("Groups").where());
+
 ////////////////////////////////////////////////////////////////////////////
 //This checks if there are docs in Groups collection for SE2 or SE12,
 //then drops pins at SE12 or SE2 accordingly
