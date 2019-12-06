@@ -129,10 +129,10 @@ var x = "";
 // // db.collection("Groups").where("location", "==", "SE12").(doc.id);
 
 
-db.collection("Groups").doc("SF").set({
-    name: "San Francisco", state: "CA", country: "USA",
-    capital: false, population: 860000,
-    regions: ["west_coast", "norcal"] });
+// db.collection("Groups").doc("SF").set({
+//     name: "San Francisco", state: "CA", country: "USA",
+//     capital: false, population: 860000,
+//     regions: ["west_coast", "norcal"] });
 
 ////////////////////////////////////////////////////////////////////////////
 //This checks if there are docs in Groups collection for SE2 or SE12,
@@ -169,6 +169,7 @@ function dropPin(){
             let se12Size = idListSE12.length;
             function se12() {
                 for (let i = 0; i < se12Size; i++) {
+                    //reads the database for IDs and puts them into an ArrayList for all the docs with location SE12
                     db.collection('Groups').doc(idListSE12[i]).onSnapshot(function (snap) {
                         var indexSe12 = idList.indexOf(idListSE12[i]);
                         g += createGroup(indexSe12, snap.data().course, snap.data().groupName);
@@ -188,6 +189,7 @@ function dropPin(){
             let se2Size = idListSE2.length;
             function se2() {
                 for (let i = 0; i < se2Size; i++) {
+                    //reads the database for IDs and puts them into an ArrayList for all the docs with location SE2
                     db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
                         var indexSe2 = idList.indexOf(idListSE2[i]);
                         x += createGroup(indexSe2, snap.data().course, snap.data().groupName);
@@ -210,7 +212,7 @@ function dropPin(){
 
 
 ////////////////////////////////////////////////////////////////////////////
-//remove all pins
+//remove all pins. Used to refresh the pins so divs inside popup will show up correctly
 //////////////////////////////////////////////////////////////////////////
 function remove() {
     mymap.removeLayer(markerSE12);
@@ -239,13 +241,16 @@ function onMapClick(e) {
 var d;
 $(document).on('click', 'img[id^=join]', function(event){
 
+    //Parses the id of the join.png to determine the index in the ArrayList of IDs
     d = $(event.target).attr("id").charAt(4);
     d = parseInt(d);
-    console.log("what is in the list: " + idList);
-    console.log("What is the id---->" + idList[d]);
-    console.log(d);
+    // console.log("what is in the list: " + idList);
+    // console.log("What is the id---->" + idList[d]);
+    // console.log(d);
     //localStorage.setITem("key", d);
     //        d = localStorage///////
+
+    //Reads the database to create divs in the pin's popup
     db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
         document.getElementById("course" + d).innerHTML = snap.data().course;
         $('.info3').html("<br>" + courseName(d, snap.data().course));
@@ -253,7 +258,6 @@ $(document).on('click', 'img[id^=join]', function(event){
         document.getElementById("groupName" + d).innerHTML = snap.data().groupName;
         document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
         document.getElementById("time").innerHTML = snap.data().time;
-
         document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
         
     });
