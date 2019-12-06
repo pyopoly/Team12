@@ -3,6 +3,9 @@
 //////////////////////////////
 dropPin();
 
+
+
+
 ////////////////////////////////////////////////////////////////////////////
 //event listeners
 //////////////////////////////////////////////////////////////////////////
@@ -70,6 +73,7 @@ function createGroup(groupNumber, course, nameOfGroup) {
 ///////////////////////////////////////////
 //These are dummy groups as examples
 //Example: var group = '<div class="group1">' + courseName('comp1510') + groupName('Finals Sprint') + join + '</div>';
+//These are unused. They are merely templates
 ///////////////////////////////////////////////
 var group1 = createGroup(0, 'Comp1530', "Let's study");
 var group2 = createGroup(1, 'Comp1712', "Finals Sprint");
@@ -118,9 +122,17 @@ var markerSE2 = {};
 var g = "";
 var x = "";
 
-console.log("this");
-console.log(
-db.collection("Groups").where());
+
+
+// console.log("this");
+// console.log(  db.collection("Groups").where("location", "==", "SE12"));
+// // db.collection("Groups").where("location", "==", "SE12").(doc.id);
+
+
+db.collection("Groups").doc("SF").set({
+    name: "San Francisco", state: "CA", country: "USA",
+    capital: false, population: 860000,
+    regions: ["west_coast", "norcal"] });
 
 ////////////////////////////////////////////////////////////////////////////
 //This checks if there are docs in Groups collection for SE2 or SE12,
@@ -219,7 +231,6 @@ function onMapClick(e) {
 
 
 
-
 ////////////////////////////////////////////////////////////////////////////
 //This adds groups automatically
 //////////////////////////////////////////////////////////////////////////
@@ -239,12 +250,15 @@ $(document).on('click', 'img[id^=join]', function(event){
         document.getElementById("course" + d).innerHTML = snap.data().course;
         $('.info3').html("<br>" + courseName(d, snap.data().course));
         $('.info2').html( groupName(d, snap.data().groupName));
-
         document.getElementById("groupName" + d).innerHTML = snap.data().groupName;
-        document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
         document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
         document.getElementById("time").innerHTML = snap.data().time;
+
+        document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
+        
     });
+
+    
     ////////////
     //show the group details popup window
     //////////

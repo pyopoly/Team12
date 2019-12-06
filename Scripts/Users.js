@@ -25,7 +25,7 @@ function createUser() {
 function showName() {
     
     firebase.auth().onAuthStateChanged(function (user) {
-      console.log(user);
+    //   console.log(user);
       document.getElementById("hello").innerHTML = user.displayName;
     });
   
