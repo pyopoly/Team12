@@ -258,6 +258,7 @@ $(document).on('click', 'img[id^=join]', function(event){
         document.getElementById("groupName" + d).innerHTML = snap.data().groupName;
         document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
         document.getElementById("time").innerHTML = snap.data().time;
+        //This automatically grabs the logged in user's name and writes to the data base to indicate who created the group
         document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
         
     });
@@ -331,9 +332,6 @@ function closeAll(){
 
 
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////
 //END OF DOCUMENT
 //////////////////////////////////////////////////////////////////////////
@@ -367,7 +365,3 @@ function closeAll(){
             SE12:[49.25018, -123.001519]
             SE14:[49.24949, -123.000677]
             -----------------------------------------------------*/
-
-
-
-
