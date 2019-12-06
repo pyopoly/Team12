@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 
@@ -114,4 +115,122 @@
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>My BCIT Project</title>
+    <meta name="comp1930 boilerplate code" content="my bcit project">
+    <meta name="author" content="BCIT">
+
+    <!-- Bootstrap for Mobile-first, and JQuery -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css">
+    <link rel="stylesheet" href="Style/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Optional styles and scripts of your own -->
+    <link rel="stylesheet" href="Style/Default.css">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+
+    <script src="Scripts/firebase_config_team12.js"></script>
+    <script src="Scripts/Users.js"></script>
+
+
+</head>
+
+
+<body>
+
+    <!-- Header Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="">StudyBuddy&nbsp; <span id="hello"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="">about</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hide" href="login.html" id="login">login/signup</a>
+                </li>
+
+                <button type="button" class="btn btn-primary nav-item hide nav-link" id="logMeOut">Logout</button>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Title Centred Landing Picture -->
+
+    <!-- A fluid container that uses the full witdh -->
+    <div class="container">
+        <div class="grid">
+
+            <div class="row">
+                <a id="createImg" href="login.html" onmouseover="this.style.cursor='pointer';">
+                    <img class="img-circle add" src="Images/Icon/add.png">
+                </a>
+
+                <a id="createTitle" href="login.html" onmouseover="this.style.cursor='pointer';">
+                    <h3 class="track">Create Group</h3>
+                </a>
+            </div>
+
+
+            <div class="row">
+                <a id="mapImg" href="login.html" onmouseover="this.style.cursor='pointer';">
+                    <img id="map" src="Images/Icon/map.png" class="img-circle">
+                </a>
+                <a id="mapTitle" href="login.html" onmouseover="this.style.cursor='pointer';">
+                    <h3 class="track">Explore Map</h3>
+                </a>
+            </div>
+
+
+
+            <div class="row">
+
+                <a href="index.html" onmouseover="this.style.cursor='pointer';" pattern="float:left">
+                    <img id="social" src="Images/Icon/people.png" class="img-circle">
+                </a>
+                <a href="index.html" onmouseover="this.style.cursor='pointer';">
+                    <h3 class="track">Get Social</h3>
+                </a>
+            </div>
+
+            <div class="row">
+                <a href="index.html" onmouseover="this.style.cursor='pointer';" pattern="float:right">
+                    <img id="QnA" src="Images/Icon/qna.png" class="img-circle">
+                </a>
+                <a href="index.html" onmouseover="this.style.cursor='pointer';">
+                    <h3 class="track">Ask Away</h3>
+                </a>
+
+
+            </div>
+            <script src="Scripts/Users.js"></script>
+    <script>
+        createUser();
+        showName();
+    </script>
+
+    <!-- This is the configuration that connects my web files to my firebase project -->
+
+
+</body>
+
+>>>>>>> a56b4dae46e69c216bb532c5247f1ffa2b2e0e09
 </html>

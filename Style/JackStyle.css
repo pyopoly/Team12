@@ -39,7 +39,7 @@ div[id^='group'] {
     overflow: hidden;
 }
 
-img[src$='join.png'] {
+img[src$='Join.png'] {
     float: right;
     width: 60px;
     cursor: pointer;

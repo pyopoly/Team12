@@ -47,7 +47,6 @@
 
 
 
-
 </head>
 
 <body>
@@ -80,9 +79,6 @@
         <div id="mapid"></div>
 
         <div id="confirm">
-            Do you want to remove this group?
-
-            <div><img id="yes" src="Images/Icon/yes.png" /><img id="no" src="Images/Icon/no.png" /></div>
         </div>
 
         <div class="detailsOfGroups">
@@ -102,7 +98,7 @@
             </div>
             <div class="details">
                 <div class='textDetails'></div>
-                <div id='joinButton'><img src='Images/Icon/delete.png' width='40px'></div>
+                <div id='joinButton'></div>
             </div>
         </div>
     </div>
@@ -140,7 +136,10 @@
         </div>
     </footer>
 
-
+<script>
+$("#confirm").html('Do you want to remove this group?<div><img id="yes" src="Images/Icon/yes.png" /><img id="no" src="Images/Icon/no.png" /></div>')
+$("#joinButton").html("<img src='Images/Icon/delete.png' width='40px'>");
+</script>
 
     <!------------------------------------------------------------------------------>
     <!-- Jack's CSS style and java Script                                         -->
