@@ -53,7 +53,7 @@ var myIcon = L.icon({
 //////////////////////////////////////////////////////////////////////////
 // var join = '<img id =join src=Images/Icon/Join.png float=right>';
 
-//function I made
+//functions I made
 function courseName(id, name) {
     var course = '<span id="course' + id + '">' + name + ' </span>';
     return course;
@@ -86,7 +86,7 @@ var group8 = createGroup(7, 'comm1116', "Presentation");
 
 
 ////////////////////////////////////////////////////////////////////////////
-//The pins on the map
+//The pins on the map.
 //////////////////////////////////////////////////////////////////////////
 //SE2
 //L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
@@ -127,12 +127,6 @@ var x = "";
 // console.log("this");
 // console.log(  db.collection("Groups").where("location", "==", "SE12"));
 // // db.collection("Groups").where("location", "==", "SE12").(doc.id);
-
-
-// db.collection("Groups").doc("SF").set({
-//     name: "San Francisco", state: "CA", country: "USA",
-//     capital: false, population: 860000,
-//     regions: ["west_coast", "norcal"] });
 
 ////////////////////////////////////////////////////////////////////////////
 //This checks if there are docs in Groups collection for SE2 or SE12,
@@ -242,6 +236,7 @@ var d;
 $(document).on('click', 'img[id^=join]', function(event){
 
     //Parses the id of the join.png to determine the index in the ArrayList of IDs
+    //IDs in the arraylist are arranged in the same order as in the database
     d = $(event.target).attr("id").charAt(4);
     d = parseInt(d);
     // console.log("what is in the list: " + idList);
@@ -258,7 +253,7 @@ $(document).on('click', 'img[id^=join]', function(event){
         document.getElementById("groupName" + d).innerHTML = snap.data().groupName;
         document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
         document.getElementById("time").innerHTML = snap.data().time;
-        //This automatically grabs the logged in user's name and writes to the data base to indicate who created the group
+        //This automatically grabs the logged in user's name and writes to the database to indicate who created the group
         document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
         
     });
@@ -283,7 +278,7 @@ $(document).on('click', 'img[id^=join]', function(event){
 
 
 /////////////////////////////////////////////
-//remove groups when the confirm yes buttons is clicked
+//removes groups when the confirm button "yes" is clicked
 /////////////////////////////////////////////////
 function deletion() {
     let y = d;
@@ -320,7 +315,7 @@ $(document).ready(function() {
 
 
 ////////////////////////////////////////////////////////////////////////////
-//This is the function to close popup windows
+//This is the function that closes popup windows
 //////////////////////////////////////////////////////////////////////////
 function closeAll(){
     $('.detailsOfGroups').hide(200);
