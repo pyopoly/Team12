@@ -54,6 +54,7 @@ function showName() {
         location.reload();
     });
     
+    
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             logout.classList.remove('hide');
