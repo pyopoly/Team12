@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*Handling Create a Group button (type "submit")
 on click -> collect data user has written
 generate group ID, store in ID field
@@ -23,12 +24,51 @@ $(document).ready(function() {
         location: groupForm.groupLocationA.value,
         details: groupForm.groupDetailsA.value,
         
+      }) .then(function() {
+      window.location.replace("map.html");
       })
+<<<<<<< HEAD
       .then(function() {
         
         window.location.replace("map.html");
         
       })
+=======
+>>>>>>> 04ea0a42394b6338fec46b658e22869026ba9522
     });
 });
 
+=======
+/*Handling Create a Group button (type "submit")
+on click -> collect data user has written
+generate group ID, store in ID field
+generate time stamp to put in "Time Created" */
+
+
+
+
+$(document).ready(function() {
+  
+  console.log("hello");
+    
+    /*Date object to add to a data field in the future*/
+    var currentDateandTime = new Date();
+   
+    var groupForm =  document.querySelector('#createAGroupForm');
+  
+    groupForm.addEventListener('submit', (e) => {
+       firebase.auth().onAuthStateChanged(function (user) {    
+        
+      e.preventDefault();
+      db.collection('Groups').add({
+        groupName: groupForm.groupNameA.value,
+        course: groupForm.courseSelectA.value,
+        location: groupForm.groupLocationA.value,
+        details: groupForm.groupDetailsA.value,       
+        createdBy: user.displayName,
+      }).then(function() { window.location.replace("map.html");})
+    });
+  });
+});
+
+>>>>>>> a56b4dae46e69c216bb532c5247f1ffa2b2e0e09

@@ -3,6 +3,9 @@
 //////////////////////////////
 dropPin();
 
+
+
+
 ////////////////////////////////////////////////////////////////////////////
 //event listeners
 //////////////////////////////////////////////////////////////////////////
@@ -48,9 +51,9 @@ var myIcon = L.icon({
 ////////////////////////////////////////////////////////////////////////////
 //Functions to create study group strings
 //////////////////////////////////////////////////////////////////////////
-var join = '<img id =join src=Images/Icon/Join.png float=right>';
+// var join = '<img id =join src=Images/Icon/Join.png float=right>';
 
-//function I made
+//functions I made
 function courseName(id, name) {
     var course = '<span id="course' + id + '">' + name + ' </span>';
     return course;
@@ -62,13 +65,15 @@ function groupName(id, name) {
 }
 
 function createGroup(groupNumber, course, nameOfGroup) {
-    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) + '<img id =join' +groupNumber + ' src=Images/Icon/join.png float=right>' + '</div>';
+    var group = '<div id="group' + groupNumber + '">' + courseName(groupNumber, course) + groupName(groupNumber, nameOfGroup) 
+    + '<img id =join' +groupNumber + ' src=Images/Icon/Join.png float=right>' + '</div>';
     return group;
 }
 
 ///////////////////////////////////////////
 //These are dummy groups as examples
 //Example: var group = '<div class="group1">' + courseName('comp1510') + groupName('Finals Sprint') + join + '</div>';
+//These are unused. They are merely templates
 ///////////////////////////////////////////////
 var group1 = createGroup(0, 'Comp1530', "Let's study");
 var group2 = createGroup(1, 'Comp1712', "Finals Sprint");
@@ -81,7 +86,7 @@ var group8 = createGroup(7, 'comm1116', "Presentation");
 
 
 ////////////////////////////////////////////////////////////////////////////
-//The pins on the map
+//The pins on the map.
 //////////////////////////////////////////////////////////////////////////
 //SE2
 //L.marker([49.251434, -123.001143], {icon: myIcon}).addTo(mymap)
@@ -117,6 +122,12 @@ var markerSE2 = {};
 var g = "";
 var x = "";
 
+
+
+// console.log("this");
+// console.log(  db.collection("Groups").where("location", "==", "SE12"));
+// // db.collection("Groups").where("location", "==", "SE12").(doc.id);
+
 ////////////////////////////////////////////////////////////////////////////
 //This checks if there are docs in Groups collection for SE2 or SE12,
 //then drops pins at SE12 or SE2 accordingly
@@ -143,15 +154,16 @@ function dropPin(){
                 idList.push(doc.id);
             });
 
-            let se2Size = idListSE2.length;
-            let se12Size = idListSE12.length;
+            
 
             ////////////////////////////////////////
             ////There are two functions inside the drop pin function that regulate the two pins
             ////This one is for SE12
-            /////////////////////////////////////////
+            /////////////////////////////////////////         
+            let se12Size = idListSE12.length;
             function se12() {
                 for (let i = 0; i < se12Size; i++) {
+                    //reads the database for IDs and puts them into an ArrayList for all the docs with location SE12
                     db.collection('Groups').doc(idListSE12[i]).onSnapshot(function (snap) {
                         var indexSe12 = idList.indexOf(idListSE12[i]);
                         g += createGroup(indexSe12, snap.data().course, snap.data().groupName);
@@ -168,8 +180,10 @@ function dropPin(){
             ////There are two functions inside the drop pin function that regulate the two pins
             ////This one is for SE2
             /////////////////////////////////////////
+            let se2Size = idListSE2.length;
             function se2() {
                 for (let i = 0; i < se2Size; i++) {
+                    //reads the database for IDs and puts them into an ArrayList for all the docs with location SE2
                     db.collection('Groups').doc(idListSE2[i]).onSnapshot(function (snap) {
                         var indexSe2 = idList.indexOf(idListSE2[i]);
                         x += createGroup(indexSe2, snap.data().course, snap.data().groupName);
@@ -192,7 +206,7 @@ function dropPin(){
 
 
 ////////////////////////////////////////////////////////////////////////////
-//remove all pins
+//remove all pins. Used to refresh the pins so divs inside popup will show up correctly
 //////////////////////////////////////////////////////////////////////////
 function remove() {
     mymap.removeLayer(markerSE12);
@@ -213,7 +227,6 @@ function onMapClick(e) {
 
 
 
-
 ////////////////////////////////////////////////////////////////////////////
 //This adds groups automatically
 //////////////////////////////////////////////////////////////////////////
@@ -222,23 +235,30 @@ function onMapClick(e) {
 var d;
 $(document).on('click', 'img[id^=join]', function(event){
 
+    //Parses the id of the join.png to determine the index in the ArrayList of IDs
+    //IDs in the arraylist are arranged in the same order as in the database
     d = $(event.target).attr("id").charAt(4);
     d = parseInt(d);
-    console.log("what is in the list: " + idList);
-    console.log("What is the id---->" + idList[d]);
-    console.log(d);
+    // console.log("what is in the list: " + idList);
+    // console.log("What is the id---->" + idList[d]);
+    // console.log(d);
     //localStorage.setITem("key", d);
     //        d = localStorage///////
+
+    //Reads the database to create divs in the pin's popup
     db.collection('Groups').doc(idList[d]).onSnapshot(function (snap) {
         document.getElementById("course" + d).innerHTML = snap.data().course;
         $('.info3').html("<br>" + courseName(d, snap.data().course));
         $('.info2').html( groupName(d, snap.data().groupName));
-
         document.getElementById("groupName" + d).innerHTML = snap.data().groupName;
-        document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
         document.getElementsByClassName("textDetails")[0].innerHTML = snap.data().details;
         document.getElementById("time").innerHTML = snap.data().time;
+        //This automatically grabs the logged in user's name and writes to the database to indicate who created the group
+        document.getElementsByClassName("author")[0].innerHTML = snap.data().createdBy;
+        
     });
+
+    
     ////////////
     //show the group details popup window
     //////////
@@ -258,7 +278,7 @@ $(document).on('click', 'img[id^=join]', function(event){
 
 
 /////////////////////////////////////////////
-//remove groups when the confirm yes buttons is clicked
+//removes groups when the confirm button "yes" is clicked
 /////////////////////////////////////////////////
 function deletion() {
     let y = d;
@@ -295,7 +315,7 @@ $(document).ready(function() {
 
 
 ////////////////////////////////////////////////////////////////////////////
-//This is the function to close popup windows
+//This is the function that closes popup windows
 //////////////////////////////////////////////////////////////////////////
 function closeAll(){
     $('.detailsOfGroups').hide(200);
@@ -304,9 +324,6 @@ function closeAll(){
         'z-index': '2'
     });
 };
-
-
-
 
 
 
@@ -343,7 +360,3 @@ function closeAll(){
             SE12:[49.25018, -123.001519]
             SE14:[49.24949, -123.000677]
             -----------------------------------------------------*/
-
-
-
-

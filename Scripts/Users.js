@@ -25,7 +25,7 @@ function createUser() {
 function showName() {
     
     firebase.auth().onAuthStateChanged(function (user) {
-      console.log(user);
+    //   console.log(user);
       document.getElementById("hello").innerHTML = user.displayName;
     });
   
@@ -63,8 +63,6 @@ function showName() {
             createTitle.setAttribute('href', "create_a_group.html");
             mapImg.setAttribute('href', "map.html");
             mapTitle.setAttribute('href', "map.html");
-
-
 
         } else {
             logout.classList.add('hide');
